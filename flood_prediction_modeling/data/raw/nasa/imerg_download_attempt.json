@@ -1,0 +1,6 @@
+{
+  "attempted": true,
+  "status": 401,
+  "reason": "HTTP Error 401: Unauthorized",
+  "href": "https://data.gesdisc.earthdata.nasa.gov/data/GPM_L3/GPM_3IMERGDE.07/1998/01/3B-DAY-E.MS.MRG.3IMERG.19980101-S000000-E235959.V07B.nc4"
+}

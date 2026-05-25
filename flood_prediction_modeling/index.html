@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flood Modeling Team Dashboard</title>
+  <style>
+    :root {
+      --bg: #07131c;
+      --bg-soft: #0d1d29;
+      --panel: rgba(10, 24, 35, 0.82);
+      --panel-strong: rgba(12, 30, 44, 0.94);
+      --line: rgba(137, 189, 214, 0.17);
+      --ink: #edf6fb;
+      --muted: #9cb5c3;
+      --cyan: #39d0ff;
+      --teal: #43f0c7;
+      --amber: #ffb562;
+      --rose: #ff7f87;
+      --good: #62f2a4;
+      --warn: #ffba64;
+      --bad: #ff7f87;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(57, 208, 255, 0.16), transparent 26%),
+        radial-gradient(circle at 100% 10%, rgba(67, 240, 199, 0.12), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(255, 181, 98, 0.12), transparent 24%),
+        linear-gradient(180deg, #041018 0%, #07131c 44%, #091824 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 88%);
+      pointer-events: none;
+    }
+
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      width: min(1360px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      padding: 0 4px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+    }
+
+    .signal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--good);
+      box-shadow: 0 0 0 0 rgba(98, 242, 164, 0.8);
+      animation: pulse 1.8s infinite;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .hero-main {
+      padding: 34px 34px 28px;
+      position: relative;
+      min-height: 330px;
+      background:
+        linear-gradient(135deg, rgba(57, 208, 255, 0.1), transparent 35%),
+        linear-gradient(180deg, rgba(67, 240, 199, 0.06), transparent 65%);
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 80% 24%, rgba(57, 208, 255, 0.18), transparent 16%),
+        radial-gradient(circle at 88% 32%, rgba(67, 240, 199, 0.14), transparent 12%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--cyan);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 0.95;
+      max-width: 10ch;
+      letter-spacing: -0.04em;
+    }
+
+    .lead {
+      margin-top: 18px;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.65;
+    }
+
+    .hero-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .strip-card {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .strip-label {
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .strip-value {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .hero-side {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 0;
+      background:
+        linear-gradient(180deg, rgba(12, 30, 44, 0.96), rgba(9, 22, 33, 0.96));
+    }
+
+    .hero-side-head {
+      padding: 28px 28px 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-side-head p {
+      margin-top: 10px;
+      color: var(--muted);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      padding: 22px 22px 24px;
+    }
+
+    .metric-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-height: 112px;
+    }
+
+    .metric-card.wide {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .metric-value {
+      margin-top: 10px;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .metric-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 6px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .section {
+      padding: 24px 24px 22px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .chart-shell {
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chart-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-size: 0.92rem;
+      flex-wrap: wrap;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      background:
+        linear-gradient(180deg, rgba(57, 208, 255, 0.02), transparent 35%);
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .insight {
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .insight strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .insight p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .dataset-list,
+    .task-list,
+    .link-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .dataset-item,
+    .task-item,
+    .link-item {
+      padding: 16px 16px 15px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.035);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dataset-item::before,
+    .task-item::before,
+    .link-item::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--cyan), transparent);
+      opacity: 0.9;
+    }
+
+    .dataset-item strong,
+    .task-item strong,
+    .link-item strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .dataset-item p,
+    .task-item p,
+    .link-item p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .badge.good {
+      color: var(--good);
+    }
+
+    .badge.warn {
+      color: var(--warn);
+    }
+
+    .badge.bad {
+      color: var(--bad);
+    }
+
+    .feature-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .feature-pill {
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      color: #dff7ff;
+      background:
+        linear-gradient(135deg, rgba(57, 208, 255, 0.18), rgba(67, 240, 199, 0.1));
+      border: 1px solid rgba(57, 208, 255, 0.2);
+    }
+
+    .ticker {
+      margin-top: 16px;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 26px;
+      padding: 12px 0;
+      white-space: nowrap;
+      animation: marquee 24s linear infinite;
+      color: var(--muted);
+      min-width: 200%;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .mini-chart-wrap {
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px;
+    }
+
+    .mini-chart-wrap h3 {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .notes {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .note {
+      padding: 14px 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 4px;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(98, 242, 164, 0.7); }
+      70% { box-shadow: 0 0 0 12px rgba(98, 242, 164, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(98, 242, 164, 0); }
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100% - 20px, 1360px);
+      }
+
+      .hero-main,
+      .section,
+      .hero-side-head {
+        padding: 22px 18px;
+      }
+
+      .metric-grid,
+      .hero-strip,
+      .insight-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        max-width: 12ch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="signal">
+          <span class="signal-dot"></span>
+          <span>Team dashboard live on local artifacts</span>
+        </div>
+        <div>Run date: <strong>2026-05-25</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div>Workspace: <strong>flood_prediction_modeling</strong></div>
+        <div>Gauge: <strong>USGS 01013500</strong></div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <article class="panel hero-main">
+        <div class="eyebrow">Flood Prediction Team Page</div>
+        <h1>Baseline results, data status, and the real blocker in one room.</h1>
+        <p class="lead">
+          This page is built for the team, not for show. It uses the actual model run, the actual downloaded datasets,
+          and the actual NASA access result. The main chart below is animated from the prediction output itself, so everyone
+          can see how the model tracks the discharge series over time.
+        </p>
+
+        <div class="hero-strip">
+          <div class="strip-card">
+            <div class="strip-label">Model Type</div>
+            <div class="strip-value">Next-day discharge baseline</div>
+          </div>
+          <div class="strip-card">
+            <div class="strip-label">Test Window</div>
+            <div class="strip-value">2020-01-03 to 2024-12-30</div>
+          </div>
+          <div class="strip-card">
+            <div class="strip-label">Prediction Rows</div>
+            <div class="strip-value">1,824</div>
+          </div>
+          <div class="strip-card">
+            <div class="strip-label">Current Caveat</div>
+            <div class="strip-value">IMERG files need Earthdata auth</div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="panel hero-side">
+        <div class="hero-side-head">
+          <div class="eyebrow">Performance Snapshot</div>
+          <h2>Working baseline, not yet full rainfall-driven flood forecasting</h2>
+          <p>The metrics below come from the current local model run and are animated from the saved output.</p>
+        </div>
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-label">RMSE</div>
+            <div class="metric-value" data-target="241.44">0</div>
+            <div class="metric-note">Lower is better</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">MAE</div>
+            <div class="metric-value" data-target="116.61">0</div>
+            <div class="metric-note">Average absolute error</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">NSE</div>
+            <div class="metric-value" data-target="0.9758" data-decimals="4">0</div>
+            <div class="metric-note">Closer to 1 is stronger</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">USGS Rows</div>
+            <div class="metric-value" data-target="9132" data-decimals="0">0</div>
+            <div class="metric-note">Daily observations integrated</div>
+          </div>
+          <div class="metric-card wide">
+            <div>
+              <div class="metric-label">NASA IMERG Status</div>
+              <div class="metric-value" style="font-size:1.5rem;">401 Unauthorized</div>
+              <div class="metric-note">Metadata access works. Binary file ingestion needs Earthdata credentials.</div>
+            </div>
+            <div class="badge warn">partial integration</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="layout">
+      <div class="stack">
+        <article class="panel section">
+          <div class="section-header">
+            <div>
+              <h2>Animated Forecast Tracking</h2>
+              <p>The chart is drawn from the latest 180 prediction rows. Blue is actual discharge and teal is predicted discharge.</p>
+            </div>
+            <div class="legend">
+              <span><i style="background:#39d0ff;"></i>Actual</span>
+              <span><i style="background:#43f0c7;"></i>Predicted</span>
+            </div>
+          </div>
+          <div class="chart-shell">
+            <div class="chart-toolbar">
+              <span>Window: 2024-07-04 to 2024-12-30</span>
+              <span id="chartReadout">Tracking latest point...</span>
+            </div>
+            <canvas id="mainChart" width="980" height="440" aria-label="Animated discharge chart"></canvas>
+          </div>
+          <div class="insight-grid">
+            <div class="insight">
+              <strong>What the team should notice</strong>
+              <p>The baseline follows the broad seasonal and event-driven movement well, including the sharp December rise, but it still misses some abrupt peaks early in the surge.</p>
+            </div>
+            <div class="insight">
+              <strong>Why this matters</strong>
+              <p>This is enough to prove the pipeline and storage design are working. The biggest next accuracy lift will likely come from adding real rainfall forcing and scaling to multiple basins.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel section">
+          <div class="section-header">
+            <div>
+              <h2>Data and Modeling Flow</h2>
+              <p>The current system is already executable end to end. These are the exact moving parts the team can build on.</p>
+            </div>
+          </div>
+          <div class="task-list">
+            <div class="task-item">
+              <strong>1. CAMELS-US attributes are downloaded and merged</strong>
+              <p>Static catchment signals such as area, elevation, slope, precipitation climatology, snow fraction, runoff ratio, and baseflow index are already available locally.</p>
+            </div>
+            <div class="task-item">
+              <strong>2. USGS Water Data API powers the target series</strong>
+              <p>The modern USGS endpoint was paginated correctly and loaded 9,132 daily discharge rows for the selected CAMELS basin gauge.</p>
+            </div>
+            <div class="task-item">
+              <strong>3. SQLite stores the working local system state</strong>
+              <p>The database captures dataset provenance, CAMELS attributes, USGS observations, and NASA IMERG metadata plus the access check result.</p>
+            </div>
+            <div class="task-item">
+              <strong>4. The baseline model predicts next-day discharge</strong>
+              <p>The current forecast uses lagged flow, rolling means, seasonal encoding, and static basin attributes. It is a working baseline, not yet the final flood model.</p>
+            </div>
+          </div>
+
+          <div class="ticker">
+            <div class="ticker-track">
+              <span>CAMELS-US integrated</span>
+              <span>USGS modern API integrated</span>
+              <span>NASA IMERG metadata integrated</span>
+              <span>Direct IMERG binary blocked by Earthdata auth</span>
+              <span>Local database built</span>
+              <span>Predictions saved</span>
+              <span>Animated chart using actual outputs</span>
+              <span>CAMELS-US integrated</span>
+              <span>USGS modern API integrated</span>
+              <span>NASA IMERG metadata integrated</span>
+              <span>Direct IMERG binary blocked by Earthdata auth</span>
+              <span>Local database built</span>
+              <span>Predictions saved</span>
+              <span>Animated chart using actual outputs</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="stack">
+        <article class="panel section">
+          <div class="section-header">
+            <div>
+              <h2>Dataset Readiness Board</h2>
+              <p>What is truly usable right now versus what still needs credentials or expansion.</p>
+            </div>
+          </div>
+          <div class="dataset-list">
+            <div class="dataset-item">
+              <strong>CAMELS-US</strong>
+              <p>Downloaded from the official Zenodo release and actively used in the trained model.</p>
+              <div class="badge-row">
+                <span class="badge good">ready</span>
+                <span class="badge">static attributes</span>
+              </div>
+            </div>
+            <div class="dataset-item">
+              <strong>USGS Water Data API</strong>
+              <p>Daily discharge is downloaded through the modern API and is already feeding the target series and model evaluation.</p>
+              <div class="badge-row">
+                <span class="badge good">ready</span>
+                <span class="badge">time series live in db</span>
+              </div>
+            </div>
+            <div class="dataset-item">
+              <strong>NASA GPM IMERG Early V07</strong>
+              <p>Granule metadata and official URLs are verified, but direct GES DISC binary download returned HTTP 401 in this environment.</p>
+              <div class="badge-row">
+                <span class="badge warn">partial</span>
+                <span class="badge">earthdata auth needed</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel section">
+          <div class="section-header">
+            <div>
+              <h2>Evaluation Metrics Suite</h2>
+              <p>These additional views break performance into different behaviors: residuals, trends, correlation, error distribution, and rolling error.</p>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-chart-wrap">
+              <h3>Residual Pulse</h3>
+              <canvas id="residualChart" width="420" height="220"></canvas>
+            </div>
+            <div class="mini-chart-wrap">
+              <h3>Trend Sparkline</h3>
+              <canvas id="sparkChart" width="420" height="220"></canvas>
+            </div>
+            <div class="mini-chart-wrap">
+              <h3>Actual vs Predicted Scatter</h3>
+              <canvas id="scatterChart" width="420" height="220"></canvas>
+            </div>
+            <div class="mini-chart-wrap">
+              <h3>Error Distribution</h3>
+              <canvas id="histChart" width="420" height="220"></canvas>
+            </div>
+            <div class="mini-chart-wrap" style="grid-column: 1 / -1;">
+              <h3>Rolling 14-Day MAE</h3>
+              <canvas id="rollingMaeChart" width="860" height="220"></canvas>
+            </div>
+          </div>
+          <div class="notes">
+            <div class="note">Residuals stay relatively contained through much of the late summer and fall window, then widen materially during the December discharge jump.</div>
+            <div class="note">The scatter view shows how tightly predicted discharge follows actual discharge overall, while the histogram shows whether errors are centered or biased.</div>
+            <div class="note">The rolling MAE chart is especially useful in a team review because it shows when the model becomes less stable rather than hiding that behavior in one single summary score.</div>
+          </div>
+        </article>
+
+        <article class="panel section">
+          <div class="section-header">
+            <div>
+              <h2>Feature Set In Play</h2>
+              <p>The baseline is simple on purpose, but it is already using both temporal and basin-context features.</p>
+            </div>
+          </div>
+          <div class="feature-cloud">
+            <span class="feature-pill">lag_1</span>
+            <span class="feature-pill">lag_2</span>
+            <span class="feature-pill">lag_3</span>
+            <span class="feature-pill">lag_7</span>
+            <span class="feature-pill">lag_14</span>
+            <span class="feature-pill">roll_mean_3</span>
+            <span class="feature-pill">roll_mean_7</span>
+            <span class="feature-pill">sin_doy</span>
+            <span class="feature-pill">cos_doy</span>
+            <span class="feature-pill">area_gages2</span>
+            <span class="feature-pill">elev_mean</span>
+            <span class="feature-pill">slope_mean</span>
+            <span class="feature-pill">p_mean</span>
+            <span class="feature-pill">frac_snow</span>
+            <span class="feature-pill">runoff_ratio</span>
+            <span class="feature-pill">baseflow_index</span>
+          </div>
+        </article>
+
+        <article class="panel section">
+          <div class="section-header">
+            <div>
+              <h2>Team Links</h2>
+              <p>Direct paths to the working artifacts in this local folder.</p>
+            </div>
+          </div>
+          <div class="link-list">
+            <div class="link-item">
+              <strong>Scripts</strong>
+              <p><a href="download_data.py">download_data.py</a>, <a href="build_database.py">build_database.py</a>, <a href="train_model.py">train_model.py</a></p>
+            </div>
+            <div class="link-item">
+              <strong>Outputs</strong>
+              <p><a href="outputs/metrics.json">metrics.json</a>, <a href="outputs/predictions.csv">predictions.csv</a>, <a href="outputs/prediction_plot.svg">prediction_plot.svg</a></p>
+            </div>
+            <div class="link-item">
+              <strong>Database and NASA check</strong>
+              <p><a href="data/flood_model.db">flood_model.db</a>, <a href="data/raw/nasa/imerg_download_attempt.json">imerg_download_attempt.json</a></p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer">
+      Team page built from the actual local model outputs. Current state: strong baseline, clear dataset path, NASA precipitation ingestion still gated by authentication.
+    </div>
+  </div>
+
+  <script>
+    const metrics = {
+      rmse: 241.4415336669272,
+      mae: 116.60852921786189,
+      nse: 0.975755848342268,
+      trainRows: 7293,
+      testRows: 1824,
+      usgsRows: 9132,
+      siteId: "01013500"
+    };
+
+    const series = [{"date":"2024-07-04","actual":932.0,"predicted":993.2716064665},{"date":"2024-07-05","actual":938.0,"predicted":992.6740981323},{"date":"2024-07-06","actual":965.0,"predicted":904.18932725},{"date":"2024-07-07","actual":950.0,"predicted":971.3844949908},{"date":"2024-07-08","actual":937.0,"predicted":1013.1648486263},{"date":"2024-07-09","actual":916.0,"predicted":958.9587665785},{"date":"2024-07-10","actual":956.0,"predicted":959.9869673084},{"date":"2024-07-11","actual":1050.0,"predicted":930.291395917},{"date":"2024-07-12","actual":1110.0,"predicted":1032.8789757271},{"date":"2024-07-13","actual":1150.0,"predicted":1166.1725744936},{"date":"2024-07-14","actual":1190.0,"predicted":1187.1136056251},{"date":"2024-07-15","actual":1220.0,"predicted":1222.4611812738},{"date":"2024-07-16","actual":1290.0,"predicted":1268.8256850127},{"date":"2024-07-17","actual":1280.0,"predicted":1289.2420134407},{"date":"2024-07-18","actual":1230.0,"predicted":1394.6763285467},{"date":"2024-07-19","actual":1190.0,"predicted":1291.832026529},{"date":"2024-07-20","actual":1110.0,"predicted":1214.0261774614},{"date":"2024-07-21","actual":1050.0,"predicted":1181.4913487007},{"date":"2024-07-22","actual":997.0,"predicted":1049.7160611152},{"date":"2024-07-23","actual":944.0,"predicted":1007.3717107231},{"date":"2024-07-24","actual":943.0,"predicted":945.4939772218},{"date":"2024-07-25","actual":913.0,"predicted":889.7682786452},{"date":"2024-07-26","actual":829.0,"predicted":942.2081838227},{"date":"2024-07-27","actual":776.0,"predicted":878.556684754},{"date":"2024-07-28","actual":730.0,"predicted":756.8171690487},{"date":"2024-07-29","actual":691.0,"predicted":746.0677487512},{"date":"2024-07-30","actual":659.0,"predicted":699.460710051},{"date":"2024-07-31","actual":637.0,"predicted":667.7800362079},{"date":"2024-08-01","actual":617.0,"predicted":639.9967001482},{"date":"2024-08-02","actual":601.0,"predicted":628.2669071319},{"date":"2024-08-03","actual":567.0,"predicted":614.5730775618},{"date":"2024-08-04","actual":570.0,"predicted":605.5995421876},{"date":"2024-08-05","actual":538.0,"predicted":556.2700920949},{"date":"2024-08-06","actual":497.0,"predicted":599.9338078033},{"date":"2024-08-07","actual":465.0,"predicted":527.7882035366},{"date":"2024-08-08","actual":456.0,"predicted":486.4405067675},{"date":"2024-08-09","actual":492.0,"predicted":463.0061954259},{"date":"2024-08-10","actual":456.0,"predicted":472.0268715528},{"date":"2024-08-11","actual":431.0,"predicted":548.0931247108},{"date":"2024-08-12","actual":407.0,"predicted":435.795525416},{"date":"2024-08-13","actual":389.0,"predicted":439.5847588364},{"date":"2024-08-14","actual":375.0,"predicted":413.7217203176},{"date":"2024-08-15","actual":364.0,"predicted":400.7833573896},{"date":"2024-08-16","actual":352.0,"predicted":387.7472362055},{"date":"2024-08-17","actual":343.0,"predicted":375.3951147507},{"date":"2024-08-18","actual":337.0,"predicted":364.1407957438},{"date":"2024-08-19","actual":407.0,"predicted":359.8388070927},{"date":"2024-08-20","actual":422.0,"predicted":357.1177621682},{"date":"2024-08-21","actual":479.0,"predicted":500.6206039845},{"date":"2024-08-22","actual":560.0,"predicted":451.2457068094},{"date":"2024-08-23","actual":538.0,"predicted":565.2148750243},{"date":"2024-08-24","actual":522.0,"predicted":663.9748390297},{"date":"2024-08-25","actual":507.0,"predicted":542.3935282036},{"date":"2024-08-26","actual":486.0,"predicted":552.3380568245},{"date":"2024-08-27","actual":491.0,"predicted":524.8041439039},{"date":"2024-08-28","actual":481.0,"predicted":491.4026194519},{"date":"2024-08-29","actual":468.0,"predicted":514.4265872047},{"date":"2024-08-30","actual":465.0,"predicted":477.6543760986},{"date":"2024-08-31","actual":483.0,"predicted":466.9260161898},{"date":"2024-09-01","actual":451.0,"predicted":474.4564969246},{"date":"2024-09-02","actual":426.0,"predicted":511.1876250364},{"date":"2024-09-03","actual":413.0,"predicted":429.5934563386},{"date":"2024-09-04","actual":401.0,"predicted":420.593541378},{"date":"2024-09-05","actual":393.0,"predicted":415.6503690676},{"date":"2024-09-06","actual":374.0,"predicted":401.9596763418},{"date":"2024-09-07","actual":368.0,"predicted":396.8226267605},{"date":"2024-09-08","actual":350.0,"predicted":364.879478362},{"date":"2024-09-09","actual":330.0,"predicted":375.5479363189},{"date":"2024-09-10","actual":317.0,"predicted":344.2273694912},{"date":"2024-09-11","actual":308.0,"predicted":325.0983933875},{"date":"2024-09-12","actual":300.0,"predicted":318.5799496357},{"date":"2024-09-13","actual":288.0,"predicted":311.4804026748},{"date":"2024-09-14","actual":278.0,"predicted":304.6935382071},{"date":"2024-09-15","actual":272.0,"predicted":289.2233108439},{"date":"2024-09-16","actual":265.0,"predicted":282.7535712035},{"date":"2024-09-17","actual":256.0,"predicted":280.8557153769},{"date":"2024-09-18","actual":246.0,"predicted":272.5371826748},{"date":"2024-09-19","actual":237.0,"predicted":262.1306915562},{"date":"2024-09-20","actual":225.0,"predicted":251.6591685588},{"date":"2024-09-21","actual":214.0,"predicted":243.8910186019},{"date":"2024-09-22","actual":208.0,"predicted":228.7889448434},{"date":"2024-09-23","actual":200.0,"predicted":218.930816964},{"date":"2024-09-24","actual":191.0,"predicted":217.1555195047},{"date":"2024-09-25","actual":205.0,"predicted":206.4190840728},{"date":"2024-09-26","actual":238.0,"predicted":197.380298493},{"date":"2024-09-27","actual":226.0,"predicted":234.075094102},{"date":"2024-09-28","actual":220.0,"predicted":282.2895058693},{"date":"2024-09-29","actual":210.0,"predicted":226.4373518744},{"date":"2024-09-30","actual":206.0,"predicted":236.7331070179},{"date":"2024-10-01","actual":201.0,"predicted":220.204082744},{"date":"2024-10-02","actual":197.0,"predicted":221.6313717111},{"date":"2024-10-03","actual":190.0,"predicted":211.9282703934},{"date":"2024-10-04","actual":235.0,"predicted":206.3069977882},{"date":"2024-10-05","actual":266.0,"predicted":196.9525637406},{"date":"2024-10-06","actual":266.0,"predicted":293.0246833895},{"date":"2024-10-07","actual":279.0,"predicted":302.8396162541},{"date":"2024-10-08","actual":266.0,"predicted":280.0987049092},{"date":"2024-10-09","actual":258.0,"predicted":312.9653967932},{"date":"2024-10-10","actual":245.0,"predicted":271.5562054594},{"date":"2024-10-11","actual":239.0,"predicted":272.6562575349},{"date":"2024-10-12","actual":233.0,"predicted":247.754803055},{"date":"2024-10-13","actual":244.0,"predicted":245.7831676886},{"date":"2024-10-14","actual":339.0,"predicted":237.4589351576},{"date":"2024-10-15","actual":323.0,"predicted":263.9715961791},{"date":"2024-10-16","actual":322.0,"predicted":438.740293853},{"date":"2024-10-17","actual":317.0,"predicted":304.9670706582},{"date":"2024-10-18","actual":315.0,"predicted":346.0950948031},{"date":"2024-10-19","actual":315.0,"predicted":331.8671649464},{"date":"2024-10-20","actual":314.0,"predicted":331.9523485379},{"date":"2024-10-21","actual":309.0,"predicted":330.1991024103},{"date":"2024-10-22","actual":315.0,"predicted":320.5365436498},{"date":"2024-10-23","actual":298.0,"predicted":313.3155632795},{"date":"2024-10-24","actual":286.0,"predicted":330.7476069795},{"date":"2024-10-25","actual":281.0,"predicted":289.8026865191},{"date":"2024-10-26","actual":271.0,"predicted":287.1308216973},{"date":"2024-10-27","actual":260.0,"predicted":286.4992718398},{"date":"2024-10-28","actual":256.0,"predicted":270.1025346778},{"date":"2024-10-29","actual":261.0,"predicted":260.401278886},{"date":"2024-10-30","actual":259.0,"predicted":262.6600314698},{"date":"2024-10-31","actual":262.0,"predicted":276.4390507745},{"date":"2024-11-01","actual":269.0,"predicted":267.6855807818},{"date":"2024-11-02","actual":259.0,"predicted":278.3238153036},{"date":"2024-11-03","actual":253.0,"predicted":289.5476060991},{"date":"2024-11-04","actual":274.0,"predicted":263.9862881927},{"date":"2024-11-05","actual":280.0,"predicted":265.5626585405},{"date":"2024-11-06","actual":273.0,"predicted":310.7880260101},{"date":"2024-11-07","actual":270.0,"predicted":297.8725730291},{"date":"2024-11-08","actual":251.0,"predicted":282.8803898216},{"date":"2024-11-09","actual":252.0,"predicted":285.9077215438},{"date":"2024-11-10","actual":255.0,"predicted":250.6744886099},{"date":"2024-11-11","actual":262.0,"predicted":273.410517931},{"date":"2024-11-12","actual":258.0,"predicted":272.038754487},{"date":"2024-11-13","actual":254.0,"predicted":283.3222392133},{"date":"2024-11-14","actual":245.0,"predicted":269.8318859575},{"date":"2024-11-15","actual":254.0,"predicted":269.2495658751},{"date":"2024-11-16","actual":260.0,"predicted":256.7942566507},{"date":"2024-11-17","actual":258.0,"predicted":283.6609795376},{"date":"2024-11-18","actual":253.0,"predicted":283.2598504673},{"date":"2024-11-19","actual":252.0,"predicted":275.3573920837},{"date":"2024-11-20","actual":252.0,"predicted":270.2216223514},{"date":"2024-11-21","actual":255.0,"predicted":273.9341875314},{"date":"2024-11-22","actual":273.0,"predicted":274.6726826906},{"date":"2024-11-23","actual":313.0,"predicted":279.9104534592},{"date":"2024-11-24","actual":329.0,"predicted":312.1721499293},{"date":"2024-11-25","actual":338.0,"predicted":372.3430534731},{"date":"2024-11-26","actual":366.0,"predicted":364.5835147764},{"date":"2024-11-27","actual":374.0,"predicted":374.6177726403},{"date":"2024-11-28","actual":403.0,"predicted":422.7445583148},{"date":"2024-11-29","actual":416.0,"predicted":407.879365082},{"date":"2024-11-30","actual":415.0,"predicted":460.6849347046},{"date":"2024-12-01","actual":412.0,"predicted":451.8645931442},{"date":"2024-12-02","actual":407.0,"predicted":440.8642996215},{"date":"2024-12-03","actual":408.0,"predicted":437.6200299941},{"date":"2024-12-04","actual":420.0,"predicted":427.9473375788},{"date":"2024-12-05","actual":409.0,"predicted":433.7113089733},{"date":"2024-12-06","actual":388.0,"predicted":452.9509572722},{"date":"2024-12-07","actual":374.0,"predicted":418.0597970297},{"date":"2024-12-08","actual":362.0,"predicted":393.3570161642},{"date":"2024-12-09","actual":351.0,"predicted":387.3731445831},{"date":"2024-12-10","actual":400.0,"predicted":375.205194863},{"date":"2024-12-11","actual":999.0,"predicted":364.7552160175},{"date":"2024-12-12","actual":1670.0,"predicted":471.2814607733},{"date":"2024-12-13","actual":1930.0,"predicted":1595.2391882897},{"date":"2024-12-14","actual":2050.0,"predicted":2260.9978243279},{"date":"2024-12-15","actual":2130.0,"predicted":2174.9270190293},{"date":"2024-12-16","actual":2310.0,"predicted":2276.8271184986},{"date":"2024-12-17","actual":2440.0,"predicted":2335.8934661254},{"date":"2024-12-18","actual":2460.0,"predicted":2590.9422792437},{"date":"2024-12-19","actual":2400.0,"predicted":2591.314368325},{"date":"2024-12-20","actual":2350.0,"predicted":2464.5730985366},{"date":"2024-12-21","actual":2250.0,"predicted":2326.9085076841},{"date":"2024-12-22","actual":2120.0,"predicted":2282.0170366532},{"date":"2024-12-23","actual":2030.0,"predicted":2112.0345189702},{"date":"2024-12-24","actual":1930.0,"predicted":1938.9634002405},{"date":"2024-12-25","actual":1830.0,"predicted":1874.517910995},{"date":"2024-12-26","actual":1740.0,"predicted":1755.1314229484},{"date":"2024-12-27","actual":1650.0,"predicted":1666.1061240552},{"date":"2024-12-28","actual":1590.0,"predicted":1590.5572059949},{"date":"2024-12-29","actual":1580.0,"predicted":1506.6943691076},{"date":"2024-12-30","actual":1720.0,"predicted":1485.8137729123}];
+
+    function animateCounters() {
+      document.querySelectorAll("[data-target]").forEach((node) => {
+        const target = Number(node.dataset.target);
+        const decimals = Number(node.dataset.decimals ?? (target < 10 ? 2 : 2));
+        const duration = 1400;
+        const start = performance.now();
+
+        function step(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = target * eased;
+          node.textContent = decimals === 0
+            ? Math.round(value).toLocaleString()
+            : value.toFixed(decimals);
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    function formatFlow(v) {
+      return `${Math.round(v).toLocaleString()} cfs`;
+    }
+
+    function makeScale(values, minPx, maxPx, flip = false) {
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      return (value) => {
+        const ratio = (value - min) / ((max - min) || 1);
+        return flip ? maxPx - ratio * (maxPx - minPx) : minPx + ratio * (maxPx - minPx);
+      };
+    }
+
+    function drawMainChart() {
+      const canvas = document.getElementById("mainChart");
+      const ctx = canvas.getContext("2d");
+      const readout = document.getElementById("chartReadout");
+      const w = canvas.width;
+      const h = canvas.height;
+      const pad = { top: 26, right: 22, bottom: 42, left: 58 };
+      const innerW = w - pad.left - pad.right;
+      const innerH = h - pad.top - pad.bottom;
+      const values = series.flatMap(d => [d.actual, d.predicted]);
+      const xScale = (i) => pad.left + (i / (series.length - 1)) * innerW;
+      const yScale = makeScale(values, pad.top, pad.top + innerH, true);
+
+      function linePath(data, key, progress) {
+        ctx.beginPath();
+        const count = Math.max(2, Math.floor(progress * data.length));
+        for (let i = 0; i < count; i++) {
+          const x = xScale(i);
+          const y = yScale(data[i][key]);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        return count - 1;
+      }
+
+      function frame(now) {
+        const progress = (Math.sin(now / 1800) + 1) / 2 * 0.08 + Math.min(now / 2200, 1) * 0.92;
+        ctx.clearRect(0, 0, w, h);
+
+        ctx.fillStyle = "rgba(255,255,255,0.02)";
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.strokeStyle = "rgba(255,255,255,0.08)";
+        ctx.lineWidth = 1;
+        for (let i = 0; i < 5; i++) {
+          const y = pad.top + (innerH / 4) * i;
+          ctx.beginPath();
+          ctx.moveTo(pad.left, y);
+          ctx.lineTo(w - pad.right, y);
+          ctx.stroke();
+        }
+
+        ctx.strokeStyle = "rgba(255,255,255,0.16)";
+        ctx.beginPath();
+        ctx.moveTo(pad.left, pad.top);
+        ctx.lineTo(pad.left, h - pad.bottom);
+        ctx.lineTo(w - pad.right, h - pad.bottom);
+        ctx.stroke();
+
+        ctx.font = "12px Segoe UI";
+        ctx.fillStyle = "rgba(235,246,251,0.72)";
+        ctx.fillText("Discharge (cfs)", 8, pad.top + 8);
+        ctx.fillText(series[0].date, pad.left, h - 14);
+        ctx.fillText(series[series.length - 1].date, w - pad.right - 78, h - 14);
+
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#39d0ff";
+        const idxActual = (() => { linePath(series, "actual", progress); ctx.stroke(); return Math.max(0, Math.floor(progress * series.length) - 1); })();
+
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#43f0c7";
+        const idxPred = (() => { linePath(series, "predicted", progress); ctx.stroke(); return Math.max(0, Math.floor(progress * series.length) - 1); })();
+
+        const dotIndex = Math.min(idxActual, series.length - 1);
+        const pulse = 5 + Math.sin(now / 160) * 2.2;
+        const last = series[dotIndex];
+        const xA = xScale(dotIndex);
+        const yA = yScale(last.actual);
+        const xP = xScale(Math.min(idxPred, series.length - 1));
+        const yP = yScale(series[Math.min(idxPred, series.length - 1)].predicted);
+
+        ctx.fillStyle = "#39d0ff";
+        ctx.beginPath();
+        ctx.arc(xA, yA, pulse, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "#43f0c7";
+        ctx.beginPath();
+        ctx.arc(xP, yP, pulse - 1.1, 0, Math.PI * 2);
+        ctx.fill();
+
+        readout.textContent = `${last.date}  |  Actual ${formatFlow(last.actual)}  |  Predicted ${formatFlow(last.predicted)}`;
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function drawResidualChart() {
+      const canvas = document.getElementById("residualChart");
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      const residuals = series.map(d => d.predicted - d.actual);
+      const maxAbs = Math.max(... residuals.map(v => Math.abs(v))) || 1;
+      const mid = h / 2;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.02)";
+      ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = "rgba(255,255,255,0.14)";
+      ctx.beginPath();
+      ctx.moveTo(0, mid);
+      ctx.lineTo(w, mid);
+      ctx.stroke();
+
+      const step = w / residuals.length;
+      residuals.forEach((r, i) => {
+        const x = i * step;
+        const y = (Math.abs(r) / maxAbs) * (h * 0.42);
+        ctx.fillStyle = r >= 0 ? "rgba(255,181,98,0.78)" : "rgba(255,127,135,0.78)";
+        ctx.fillRect(x, r >= 0 ? mid - y : mid, Math.max(1.4, step - 0.5), y);
+      });
+    }
+
+    function drawSparkChart() {
+      const canvas = document.getElementById("sparkChart");
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      const vals = series.map(d => d.actual);
+      const xScale = (i) => 12 + (i / (vals.length - 1)) * (w - 24);
+      const yScale = makeScale(vals, 16, h - 16, true);
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.02)";
+      ctx.fillRect(0, 0, w, h);
+
+      const gradient = ctx.createLinearGradient(0, 0, 0, h);
+      gradient.addColorStop(0, "rgba(57,208,255,0.35)");
+      gradient.addColorStop(1, "rgba(57,208,255,0.02)");
+
+      ctx.beginPath();
+      vals.forEach((v, i) => {
+        const x = xScale(i);
+        const y = yScale(v);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.lineTo(xScale(vals.length - 1), h - 14);
+      ctx.lineTo(xScale(0), h - 14);
+      ctx.closePath();
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      ctx.beginPath();
+      vals.forEach((v, i) => {
+        const x = xScale(i);
+        const y = yScale(v);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = "#39d0ff";
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+    }
+
+    function drawScatterChart() {
+      const canvas = document.getElementById("scatterChart");
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      const pad = 22;
+      const actuals = series.map(d => d.actual);
+      const preds = series.map(d => d.predicted);
+      const maxVal = Math.max(...actuals, ...preds);
+      const minVal = Math.min(...actuals, ...preds);
+      const scale = (v) => pad + ((v - minVal) / ((maxVal - minVal) || 1)) * (w - pad * 2);
+      const scaleY = (v) => h - pad - ((v - minVal) / ((maxVal - minVal) || 1)) * (h - pad * 2);
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.02)";
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = "rgba(255,255,255,0.16)";
+      ctx.beginPath();
+      ctx.moveTo(pad, h - pad);
+      ctx.lineTo(w - pad, pad);
+      ctx.stroke();
+
+      for (const d of series) {
+        ctx.fillStyle = "rgba(67,240,199,0.55)";
+        ctx.beginPath();
+        ctx.arc(scale(d.actual), scaleY(d.predicted), 2.2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.fillStyle = "rgba(235,246,251,0.7)";
+      ctx.font = "11px Segoe UI";
+      ctx.fillText("Ideal fit line", w - 82, 18);
+      ctx.fillText("Actual", w - 48, h - 8);
+      ctx.save();
+      ctx.translate(12, 44);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText("Predicted", 0, 0);
+      ctx.restore();
+    }
+
+    function drawHistogramChart() {
+      const canvas = document.getElementById("histChart");
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      const residuals = series.map(d => d.predicted - d.actual);
+      const min = Math.min(...residuals);
+      const max = Math.max(...residuals);
+      const bins = 14;
+      const binSize = ((max - min) || 1) / bins;
+      const counts = new Array(bins).fill(0);
+
+      residuals.forEach((v) => {
+        const idx = Math.min(bins - 1, Math.floor((v - min) / binSize));
+        counts[Math.max(0, idx)] += 1;
+      });
+
+      const maxCount = Math.max(...counts);
+      const barW = (w - 36) / bins;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.02)";
+      ctx.fillRect(0, 0, w, h);
+
+      counts.forEach((count, i) => {
+        const barH = (count / (maxCount || 1)) * (h - 46);
+        const x = 18 + i * barW;
+        const y = h - 22 - barH;
+        ctx.fillStyle = "rgba(255,181,98,0.78)";
+        ctx.fillRect(x, y, barW - 4, barH);
+      });
+
+      ctx.strokeStyle = "rgba(255,255,255,0.16)";
+      ctx.beginPath();
+      ctx.moveTo(18, h - 22);
+      ctx.lineTo(w - 18, h - 22);
+      ctx.stroke();
+
+      ctx.fillStyle = "rgba(235,246,251,0.7)";
+      ctx.font = "11px Segoe UI";
+      ctx.fillText("Under-prediction", 18, 16);
+      ctx.fillText("Over-prediction", w - 94, 16);
+    }
+
+    function drawRollingMaeChart() {
+      const canvas = document.getElementById("rollingMaeChart");
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      const pad = { top: 20, right: 18, bottom: 28, left: 42 };
+      const innerW = w - pad.left - pad.right;
+      const innerH = h - pad.top - pad.bottom;
+      const residuals = series.map(d => Math.abs(d.predicted - d.actual));
+      const rolling = residuals.map((_, i) => {
+        const start = Math.max(0, i - 13);
+        const subset = residuals.slice(start, i + 1);
+        return subset.reduce((a, b) => a + b, 0) / subset.length;
+      });
+      const xScale = (i) => pad.left + (i / (rolling.length - 1)) * innerW;
+      const yScale = makeScale(rolling, pad.top, pad.top + innerH, true);
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.02)";
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = "rgba(255,255,255,0.08)";
+      for (let i = 0; i < 4; i++) {
+        const y = pad.top + (innerH / 3) * i;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(w - pad.right, y);
+        ctx.stroke();
+      }
+
+      ctx.beginPath();
+      rolling.forEach((v, i) => {
+        const x = xScale(i);
+        const y = yScale(v);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = "#ffb562";
+      ctx.lineWidth = 2.4;
+      ctx.stroke();
+
+      ctx.fillStyle = "rgba(235,246,251,0.7)";
+      ctx.font = "11px Segoe UI";
+      ctx.fillText("14-day rolling MAE", 12, 16);
+      ctx.fillText(series[0].date, pad.left, h - 8);
+      ctx.fillText(series[series.length - 1].date, w - 78, h - 8);
+    }
+
+    animateCounters();
+    drawMainChart();
+    drawResidualChart();
+    drawSparkChart();
+    drawScatterChart();
+    drawHistogramChart();
+    drawRollingMaeChart();
+  </script>
+</body>
+</html>

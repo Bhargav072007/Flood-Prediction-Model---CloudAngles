@@ -1,0 +1,26 @@
+{
+  "site_id": "01013500",
+  "train_rows": 7293,
+  "test_rows": 1824,
+  "rmse": 241.4415336669272,
+  "mae": 116.60852921786189,
+  "nse": 0.975755848342268,
+  "feature_columns": [
+    "lag_1",
+    "lag_2",
+    "lag_3",
+    "lag_7",
+    "lag_14",
+    "roll_mean_3",
+    "roll_mean_7",
+    "sin_doy",
+    "cos_doy",
+    "area_gages2",
+    "elev_mean",
+    "slope_mean",
+    "p_mean",
+    "frac_snow",
+    "runoff_ratio",
+    "baseflow_index"
+  ]
+}

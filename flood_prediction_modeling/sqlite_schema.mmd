@@ -1,0 +1,48 @@
+erDiagram
+    DATASET_SOURCE ||--o{ CAMELS_ATTRIBUTES : documents
+    DATASET_SOURCE ||--o{ USGS_DAILY_DISCHARGE : documents
+    DATASET_SOURCE ||--o{ NASA_IMERG_GRANULES : documents
+    DATASET_SOURCE ||--o{ NASA_IMERG_DOWNLOAD_ATTEMPT : documents
+
+    DATASET_SOURCE {
+        text source_name
+        text provider
+        text notes
+    }
+
+    CAMELS_ATTRIBUTES {
+        text gauge_id
+        text gauge_name
+        text huc_02
+        float area_gages2
+        float elev_mean
+        float slope_mean
+        float p_mean
+        float frac_snow
+        float runoff_ratio
+        float baseflow_index
+    }
+
+    USGS_DAILY_DISCHARGE {
+        text site_id
+        date date
+        float value
+        text unit
+        text approval_status
+        text parameter_code
+    }
+
+    NASA_IMERG_GRANULES {
+        text title
+        datetime time_start
+        datetime time_end
+        text download_link
+        text opendap_link
+    }
+
+    NASA_IMERG_DOWNLOAD_ATTEMPT {
+        bool attempted
+        int status
+        text reason
+        text href
+    }

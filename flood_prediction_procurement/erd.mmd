@@ -1,0 +1,114 @@
+erDiagram
+    DATASET_SOURCE ||--o{ STATION : provides
+    DATASET_SOURCE ||--o{ GRID_CELL : provides
+    DATASET_SOURCE ||--o{ OBSERVATION : contributes
+    DATASET_SOURCE ||--o{ FLOOD_EVENT : labels
+    DATASET_SOURCE ||--o{ RASTER_ASSET : owns
+
+    WATERSHED ||--o{ RIVER_REACH : contains
+    WATERSHED ||--o{ STATION : contains
+    WATERSHED ||--o{ FLOOD_EVENT : affected_by
+
+    RIVER_REACH ||--o{ STATION : monitored_by
+    RIVER_REACH ||--o{ OBSERVATION : has
+    RIVER_REACH ||--o{ MODEL_PREDICTION : receives
+
+    STATION ||--o{ OBSERVATION : records
+    GRID_CELL ||--o{ OBSERVATION : stores
+
+    FLOOD_EVENT ||--o{ RASTER_ASSET : documented_by
+    FLOOD_EVENT ||--o{ MODEL_PREDICTION : evaluated_against
+
+    MODEL_RUN ||--o{ MODEL_PREDICTION : generates
+    VARIABLE_CATALOG ||--o{ OBSERVATION : classifies
+    VARIABLE_CATALOG ||--o{ MODEL_PREDICTION : classifies
+
+    DATASET_SOURCE {
+        bigint dataset_source_id PK
+        text name
+        text provider
+        text category
+        text source_url
+    }
+
+    WATERSHED {
+        bigint watershed_id PK
+        text external_code
+        text name
+        char country_code
+    }
+
+    RIVER_REACH {
+        bigint river_reach_id PK
+        bigint watershed_id FK
+        text external_code
+        int stream_order
+    }
+
+    STATION {
+        bigint station_id PK
+        bigint dataset_source_id FK
+        bigint watershed_id FK
+        bigint river_reach_id FK
+        text provider_station_code
+        text station_type
+    }
+
+    GRID_CELL {
+        bigint grid_cell_id PK
+        bigint dataset_source_id FK
+        text external_code
+        numeric resolution_m
+    }
+
+    VARIABLE_CATALOG {
+        text variable_code PK
+        text variable_name
+        text unit
+    }
+
+    OBSERVATION {
+        bigint observation_id PK
+        bigint dataset_source_id FK
+        bigint station_id FK
+        bigint grid_cell_id FK
+        bigint river_reach_id FK
+        timestamptz observed_at
+        text variable_code FK
+        numeric value
+    }
+
+    FLOOD_EVENT {
+        bigint flood_event_id PK
+        bigint dataset_source_id FK
+        bigint watershed_id FK
+        text external_event_id
+        timestamptz start_time
+        timestamptz end_time
+    }
+
+    RASTER_ASSET {
+        bigint raster_asset_id PK
+        bigint dataset_source_id FK
+        bigint flood_event_id FK
+        text asset_type
+        text storage_uri
+    }
+
+    MODEL_RUN {
+        bigint model_run_id PK
+        text model_name
+        text model_version
+        timestamptz issue_time
+    }
+
+    MODEL_PREDICTION {
+        bigint model_prediction_id PK
+        bigint model_run_id FK
+        bigint station_id FK
+        bigint grid_cell_id FK
+        bigint river_reach_id FK
+        bigint flood_event_id FK
+        timestamptz predicted_for
+        text variable_code FK
+    }

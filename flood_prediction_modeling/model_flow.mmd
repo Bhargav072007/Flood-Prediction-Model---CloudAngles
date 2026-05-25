@@ -1,0 +1,9 @@
+flowchart LR
+    A[CAMELS-US Attributes<br/>topography climate hydrology] --> D[Feature Store]
+    B[USGS Water Data API<br/>daily discharge 00060] --> D
+    C[NASA IMERG Early V07<br/>granule metadata and file links] --> D
+    D --> E[SQLite Database]
+    E --> F[Feature Engineering<br/>lags rolling means seasonality static attributes]
+    F --> G[Baseline Linear Forecast Model]
+    G --> H[Predicted Next-Day Discharge]
+    G --> I[Performance SVG and Metrics JSON]
