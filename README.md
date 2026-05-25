@@ -82,46 +82,99 @@ Best places to see them:
 
 ## README Visual Summary
 
-These repository-native visuals summarize the most important factor groups and the structure of the single master CSV.
+These repository-native visuals summarize the master CSV and each major factor family used to support flood prediction analysis.
 
-### 1. Master CSV structure
+### General Master CSV visualization
 
-This chart shows how the merged table is organized across dynamic signals, metadata, CAMELS attributes, rating-curve information, NASA metadata, and basin geometry fields.
+This is the overall merged-table view that shows how all data families fit together in one prediction-ready CSV.
 
 ![Master CSV Overview](./flood_prediction_modeling/assets/readme/master_overview.svg)
 
-### 2. Daily discharge behavior
+## One Visualization Per Factor Family
 
-This plot summarizes the long-term daily discharge signal and overlays a smoothed monthly mean trend.
+### Factor 1. Daily discharge
+
+Long-term discharge behavior and the smoothed monthly trend.
 
 ![Discharge Overview](./flood_prediction_modeling/assets/readme/discharge_overview.svg)
 
-### 3. Stage-discharge relationship
+### Factor 2. Instantaneous discharge
 
-This visualization shows the observed paired water-level and discharge relationship for the target USGS gauge.
+Recent mean, minimum, and maximum discharge summaries from the USGS IV feed.
+
+![Instantaneous Discharge](./flood_prediction_modeling/assets/readme/factor_02_iv_discharge.svg)
+
+### Factor 3. Gage height / stage
+
+Recent mean, minimum, and maximum stage summaries for the same gauge.
+
+![Gage Height](./flood_prediction_modeling/assets/readme/factor_03_gage_height.svg)
+
+### Factor 4. Stage-discharge relationship
+
+Observed water-level and discharge pairing for the target site.
 
 ![Stage Discharge Curve](./flood_prediction_modeling/assets/readme/stage_discharge_curve.svg)
 
-### 4. Static basin factors
+### Factor 5. Site metadata
 
-This board summarizes the topography, climate, and hydrologic attribute groups extracted from CAMELS for the basin.
+Key physical and location information for the target USGS gauge.
+
+![Site Metadata](./flood_prediction_modeling/assets/readme/factor_05_site_metadata.svg)
+
+### Factor 6. Time-series metadata
+
+Coverage, units, and computation details for the primary discharge series.
+
+![Time Series Metadata](./flood_prediction_modeling/assets/readme/factor_06_ts_metadata.svg)
+
+### Factor 7. Topography factors
+
+Static terrain context including slope, elevation, and basin area.
+
+![Topography Factors](./flood_prediction_modeling/assets/readme/factor_07_topography.svg)
+
+### Factor 8. Climate factors
+
+Static climate descriptors such as precipitation, PET, snow fraction, and aridity.
+
+![Climate Factors](./flood_prediction_modeling/assets/readme/factor_08_climate.svg)
+
+### Factor 9. Hydrology factors
+
+Hydrologic signatures including runoff ratio, baseflow, and flow quantiles.
+
+![Hydrology Factors](./flood_prediction_modeling/assets/readme/factor_09_hydrology.svg)
+
+### Factor 10. Rating curve factors
+
+USGS rating-curve file coverage and curve availability for stage/discharge interpretation.
+
+![Rating Curves](./flood_prediction_modeling/assets/readme/factor_10_rating_curves.svg)
+
+### Factor 11. NASA IMERG metadata factors
+
+Current precipitation metadata path and time coverage for the planned rainfall-driven upgrade.
+
+![NASA IMERG Metadata](./flood_prediction_modeling/assets/readme/factor_11_nasa_imerg_metadata.svg)
+
+### Factor 12. Basin geometry factors
+
+Upstream basin geometry used to anchor catchment-scale extraction.
+
+![Basin Geometry](./flood_prediction_modeling/assets/readme/factor_12_basin_geometry.svg)
+
+### Combined static-basin board
+
+Topography, climate, and hydrology are also summarized together here for a compact physical-basin view.
 
 ![Attribute Board](./flood_prediction_modeling/assets/readme/attribute_board.svg)
 
-### What these visuals cover
+## Combined Flood-Prediction Visualization
 
-Together, the README visuals cover the major factor families currently loaded into the repository:
+This is the combined view showing how all factor families contribute to the final prediction workflow.
 
-1. discharge
-2. gage height / stage
-3. stage-discharge relationship
-4. site and time-series metadata
-5. topography attributes
-6. climate attributes
-7. hydrology attributes
-8. rating-curve metadata
-9. basin geometry
-10. NASA IMERG granule metadata summary
+![Combined Prediction Stack](./flood_prediction_modeling/assets/readme/combined_prediction_stack.svg)
 
 ## Step-by-Step Usage
 

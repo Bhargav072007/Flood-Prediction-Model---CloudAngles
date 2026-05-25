@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="560" viewBox="0 0 1300 560">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#5d7a8d"/></marker></defs>
+<rect width="100%" height="100%" rx="24" fill="#102636"/>
+<text x="60" y="60" fill="#eef7fb" font-size="30" font-family="Segoe UI" font-weight="700">Combined Flood-Prediction Stack</text>
+<text x="60" y="92" fill="#9eb7c5" font-size="16" font-family="Segoe UI">How all factor families combine into a stronger prediction workflow.</text>
+<rect x="80" y="180" width="280" height="140" rx="22" fill="#0f2130" stroke="#27495e"/>
+<text x="104" y="216" fill="#39d0ff" font-size="20" font-family="Segoe UI" font-weight="700">Dynamic Signals</text>
+<text x="106" y="244" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Daily discharge</text>
+<text x="106" y="266" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Instantaneous discharge</text>
+<text x="106" y="288" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Gage height</text>
+<text x="106" y="310" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Stage-discharge pairs</text>
+<rect x="500" y="180" width="280" height="140" rx="22" fill="#0f2130" stroke="#27495e"/>
+<text x="524" y="216" fill="#43f0c7" font-size="20" font-family="Segoe UI" font-weight="700">Static Basin Factors</text>
+<text x="526" y="244" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Topography</text>
+<text x="526" y="266" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Climate</text>
+<text x="526" y="288" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Hydrology</text>
+<text x="526" y="310" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Basin geometry</text>
+<rect x="920" y="180" width="280" height="140" rx="22" fill="#0f2130" stroke="#27495e"/>
+<text x="944" y="216" fill="#ffb562" font-size="20" font-family="Segoe UI" font-weight="700">Support Context</text>
+<text x="946" y="244" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Site metadata</text>
+<text x="946" y="266" fill="#eef7fb" font-size="14" font-family="Segoe UI">• TS metadata</text>
+<text x="946" y="288" fill="#eef7fb" font-size="14" font-family="Segoe UI">• Rating curves</text>
+<text x="946" y="310" fill="#eef7fb" font-size="14" font-family="Segoe UI">• NASA IMERG metadata</text>
+<line x1="360" y1="250" x2="500" y2="250" stroke="#5d7a8d" stroke-width="4" marker-end="url(#arrow)"/>
+<line x1="780" y1="250" x2="920" y2="250" stroke="#5d7a8d" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="410" y="390" width="480" height="100" rx="26" fill="#173244" stroke="#39d0ff" stroke-width="2"/>
+<text x="650" y="428" text-anchor="middle" fill="#eef7fb" font-size="24" font-family="Segoe UI" font-weight="700">Flood / High-Flow Prediction Layer</text>
+<text x="650" y="456" text-anchor="middle" fill="#c9d9e2" font-size="15" font-family="Segoe UI">Current baseline: next-day discharge forecast</text>
+<text x="650" y="478" text-anchor="middle" fill="#c9d9e2" font-size="15" font-family="Segoe UI">Next upgrade: rainfall-driven model with authenticated precipitation ingestion</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<defs>
+<linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0b1822"/>
+<stop offset="100%" stop-color="#102636"/>
+</linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.22"/>
+</filter>
+</defs>
+<rect width="1200" height="520" rx="24" fill="url(#bg)"/>
+<text x="60" y="60" fill="#eef7fb" font-size="30" font-family="Segoe UI" font-weight="700">Factor 9: CAMELS Hydrology</text>
+<text x="60" y="92" fill="#9eb7c5" font-size="16" font-family="Segoe UI">Hydrologic signature features derived from basin response behavior.</text>
+<rect x="50" y="120" width="1100" height="350" rx="20" fill="#0f2130" stroke="#27495e"/>
+<text x="70" y="162" fill="#c9d9e2" font-size="14" font-family="Segoe UI">Q mean</text>
+<rect x="330" y="149" width="760" height="18" rx="9" fill="#173244"/>
+<rect x="330" y="149" width="194.6" height="18" rx="9" fill="#ffb562"/>
+<text x="1110" y="162" text-anchor="end" fill="#eef7fb" font-size="13" font-family="Segoe UI">1.699</text>
+<text x="70" y="210" fill="#c9d9e2" font-size="14" font-family="Segoe UI">Runoff ratio</text>
+<rect x="330" y="197" width="760" height="18" rx="9" fill="#173244"/>
+<rect x="330" y="197" width="62.2" height="18" rx="9" fill="#ffb562"/>
+<text x="1110" y="210" text-anchor="end" fill="#eef7fb" font-size="13" font-family="Segoe UI">0.543</text>
+<text x="70" y="258" fill="#c9d9e2" font-size="14" font-family="Segoe UI">Baseflow index</text>
+<rect x="330" y="245" width="760" height="18" rx="9" fill="#173244"/>
+<rect x="330" y="245" width="67.0" height="18" rx="9" fill="#ffb562"/>
+<text x="1110" y="258" text-anchor="end" fill="#eef7fb" font-size="13" font-family="Segoe UI">0.585</text>
+<text x="70" y="306" fill="#c9d9e2" font-size="14" font-family="Segoe UI">Q95</text>
+<rect x="330" y="293" width="760" height="18" rx="9" fill="#173244"/>
+<rect x="330" y="293" width="730.0" height="18" rx="9" fill="#ffb562"/>
+<text x="1110" y="306" text-anchor="end" fill="#eef7fb" font-size="13" font-family="Segoe UI">6.373</text>
+</svg>

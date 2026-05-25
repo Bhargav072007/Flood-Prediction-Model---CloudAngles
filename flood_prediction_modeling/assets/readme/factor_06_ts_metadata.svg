@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="372" viewBox="0 0 1100 372">
+<defs>
+<linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0b1822"/>
+<stop offset="100%" stop-color="#102636"/>
+</linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.22"/>
+</filter>
+</defs>
+<rect width="1100" height="372" rx="24" fill="url(#bg)"/>
+<text x="50" y="56" fill="#eef7fb" font-size="30" font-family="Segoe UI" font-weight="700">Factor 6: Time-Series Metadata</text>
+<text x="50" y="88" fill="#9eb7c5" font-size="16" font-family="Segoe UI">Coverage, units, and stream metadata for the primary discharge series.</text>
+<rect x="40" y="116" width="1020" height="226" rx="22" fill="#0f2130" stroke="#27495e"/>
+<text x="70" y="155" fill="#43f0c7" font-size="15" font-family="Segoe UI" font-weight="700">parameter name</text>
+<text x="360" y="155" fill="#eef7fb" font-size="14" font-family="Segoe UI">Discharge</text>
+<line x1="65" y1="173" x2="1035" y2="173" stroke="#244255"/>
+<text x="70" y="195" fill="#43f0c7" font-size="15" font-family="Segoe UI" font-weight="700">unit of measure</text>
+<text x="360" y="195" fill="#eef7fb" font-size="14" font-family="Segoe UI">ft^3/s</text>
+<line x1="65" y1="213" x2="1035" y2="213" stroke="#244255"/>
+<text x="70" y="235" fill="#43f0c7" font-size="15" font-family="Segoe UI" font-weight="700">begin</text>
+<text x="360" y="235" fill="#eef7fb" font-size="14" font-family="Segoe UI">1904-05-07T00:00:00.000001</text>
+<line x1="65" y1="253" x2="1035" y2="253" stroke="#244255"/>
+<text x="70" y="275" fill="#43f0c7" font-size="15" font-family="Segoe UI" font-weight="700">end</text>
+<text x="360" y="275" fill="#eef7fb" font-size="14" font-family="Segoe UI">2024-04-16T00:00:00.000001</text>
+<line x1="65" y1="293" x2="1035" y2="293" stroke="#244255"/>
+<text x="70" y="315" fill="#43f0c7" font-size="15" font-family="Segoe UI" font-weight="700">computation period identifier</text>
+<text x="360" y="315" fill="#eef7fb" font-size="14" font-family="Segoe UI">Water Year</text>
+<line x1="65" y1="333" x2="1035" y2="333" stroke="#244255"/>
+<text x="70" y="355" fill="#43f0c7" font-size="15" font-family="Segoe UI" font-weight="700">monitoring location id</text>
+<text x="360" y="355" fill="#eef7fb" font-size="14" font-family="Segoe UI">USGS-01013500</text>
+<line x1="65" y1="373" x2="1035" y2="373" stroke="#244255"/>
+</svg>

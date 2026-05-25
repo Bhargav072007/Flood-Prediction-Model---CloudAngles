@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520">
+<defs>
+<linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0b1822"/>
+<stop offset="100%" stop-color="#102636"/>
+</linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.22"/>
+</filter>
+</defs>
+<rect width="1400" height="520" rx="24" fill="url(#bg)"/>
+<text x="60" y="60" fill="#eef7fb" font-size="30" font-family="Segoe UI" font-weight="700">Factor 3: Gage Height / Stage</text>
+<text x="60" y="92" fill="#9eb7c5" font-size="16" font-family="Segoe UI">Recent mean/min/max stage summaries from the USGS IV service.</text>
+<rect x="50" y="100" width="1330" height="370" rx="20" fill="#0f2130" stroke="#27495e"/>
+<line x1="70" y1="120.0" x2="1360" y2="120.0" stroke="#244255"/>
+<line x1="70" y1="202.5" x2="1360" y2="202.5" stroke="#244255"/>
+<line x1="70" y1="285.0" x2="1360" y2="285.0" stroke="#244255"/>
+<line x1="70" y1="367.5" x2="1360" y2="367.5" stroke="#244255"/>
+<line x1="70" y1="450.0" x2="1360" y2="450.0" stroke="#244255"/>
+<polygon points="70.00,120.00 254.29,150.31 438.57,194.08 622.86,254.69 807.14,305.20 991.43,355.71 1175.71,396.12 1360.00,429.80 1360.00,450.00 1175.71,429.80 991.43,396.12 807.14,355.71 622.86,305.20 438.57,258.06 254.29,197.45 70.00,150.31" fill="#ffb562" opacity="0.18"/>
+<polyline fill="none" stroke="#ffb562" stroke-width="3" points="70.00,135.61 254.29,173.70 438.57,223.34 622.86,280.48 807.14,329.55 991.43,374.52 1175.71,414.64 1360.00,439.98"/>
+<text x="70" y="492" fill="#c9d9e2" font-size="12" font-family="Segoe UI">2026-05-18</text>
+<text x="1255" y="492" fill="#c9d9e2" font-size="12" font-family="Segoe UI">2026-05-25</text>
+<text x="24" y="260.0" transform="rotate(-90 24 260.0)" fill="#c9d9e2" font-size="13" font-family="Segoe UI">Gage height (ft)</text>
+<text x="1170" y="60" fill="#ffb562" font-size="13" font-family="Segoe UI">Mean with min/max band</text>
+</svg>
