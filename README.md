@@ -47,6 +47,12 @@ From the latest saved run:
 Metric file:
 - [`flood_prediction_modeling/outputs/metrics.json`](./flood_prediction_modeling/outputs/metrics.json)
 
+## Project Timeline
+
+This timeline shows the actual progression of the repository from data sourcing to a collaboration-ready delivery:
+
+![Project Timeline](./flood_prediction_modeling/assets/readme/timeline.svg)
+
 ## Main Graphs and Visual Review
 
 ### Static output already saved
@@ -73,6 +79,49 @@ The project includes these evaluation views:
 Best places to see them:
 - [`flood_prediction_modeling/index.html`](./flood_prediction_modeling/index.html)
 - [`Flood_Prediction_Collab_Notebook.ipynb`](./Flood_Prediction_Collab_Notebook.ipynb)
+
+## README Visual Summary
+
+These repository-native visuals summarize the most important factor groups and the structure of the single master CSV.
+
+### 1. Master CSV structure
+
+This chart shows how the merged table is organized across dynamic signals, metadata, CAMELS attributes, rating-curve information, NASA metadata, and basin geometry fields.
+
+![Master CSV Overview](./flood_prediction_modeling/assets/readme/master_overview.svg)
+
+### 2. Daily discharge behavior
+
+This plot summarizes the long-term daily discharge signal and overlays a smoothed monthly mean trend.
+
+![Discharge Overview](./flood_prediction_modeling/assets/readme/discharge_overview.svg)
+
+### 3. Stage-discharge relationship
+
+This visualization shows the observed paired water-level and discharge relationship for the target USGS gauge.
+
+![Stage Discharge Curve](./flood_prediction_modeling/assets/readme/stage_discharge_curve.svg)
+
+### 4. Static basin factors
+
+This board summarizes the topography, climate, and hydrologic attribute groups extracted from CAMELS for the basin.
+
+![Attribute Board](./flood_prediction_modeling/assets/readme/attribute_board.svg)
+
+### What these visuals cover
+
+Together, the README visuals cover the major factor families currently loaded into the repository:
+
+1. discharge
+2. gage height / stage
+3. stage-discharge relationship
+4. site and time-series metadata
+5. topography attributes
+6. climate attributes
+7. hydrology attributes
+8. rating-curve metadata
+9. basin geometry
+10. NASA IMERG granule metadata summary
 
 ## Step-by-Step Usage
 
@@ -166,6 +215,8 @@ It contains:
 - rating curve metadata
 - NASA IMERG metadata summary
 - basin geometry reference
+
+This table is also the source behind the repository-level visual summaries shown above.
 
 ## Dataset Status
 
