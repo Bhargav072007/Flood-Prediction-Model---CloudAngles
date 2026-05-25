@@ -1,60 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="500" viewBox="0 0 1400 500">
-<defs>
-<linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#0b1822"/>
-<stop offset="100%" stop-color="#102636"/>
-</linearGradient>
-<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.22"/>
-</filter>
-</defs>
-<rect width="1400" height="500" rx="24" fill="url(#bg)"/>
-<text x="60" y="60" fill="#eef7fb" font-size="30" font-family="Segoe UI" font-weight="700">Master CSV Overview</text>
-<text x="60" y="92" fill="#9eb7c5" font-size="16" font-family="Segoe UI">Single-table view of the merged hydrology and basin feature space.</text>
-<rect x="60" y="120" width="300" height="120" rx="22" fill="#0f2130" stroke="#27495e"/>
-<text x="90" y="165" fill="#43f0c7" font-size="18" font-family="Segoe UI" font-weight="700">Rows</text>
-<text x="90" y="205" fill="#eef7fb" font-size="38" font-family="Segoe UI" font-weight="700">9,132</text>
-<rect x="390" y="120" width="300" height="120" rx="22" fill="#0f2130" stroke="#27495e"/>
-<text x="420" y="165" fill="#39d0ff" font-size="18" font-family="Segoe UI" font-weight="700">Columns</text>
-<text x="420" y="205" fill="#eef7fb" font-size="38" font-family="Segoe UI" font-weight="700">128</text>
-<rect x="720" y="120" width="620" height="120" rx="22" fill="#0f2130" stroke="#27495e"/>
-<text x="750" y="165" fill="#ffb562" font-size="18" font-family="Segoe UI" font-weight="700">Core Use</text>
-<text x="750" y="198" fill="#eef7fb" font-size="20" font-family="Segoe UI">Daily target + IV summaries + site metadata + CAMELS attributes</text>
-<rect x="80" y="300" width="1240" height="150" rx="18" fill="#0f2130" stroke="#27495e"/>
+<defs></defs>
+<rect width="1400" height="500" rx="24" fill="#ffffff"/>
+<text x="60" y="60" fill="#142433" font-size="30" font-family="Segoe UI" font-weight="700">Master CSV Overview</text>
+<text x="60" y="92" fill="#4e6678" font-size="16" font-family="Segoe UI">Single-table view of the merged hydrology and basin feature space.</text>
+<rect x="60" y="120" width="300" height="120" rx="22" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="90" y="165" fill="#2f855a" font-size="18" font-family="Segoe UI" font-weight="700">Rows</text>
+<text x="90" y="205" fill="#142433" font-size="38" font-family="Segoe UI" font-weight="700">9,132</text>
+<rect x="390" y="120" width="300" height="120" rx="22" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="420" y="165" fill="#2b6cb0" font-size="18" font-family="Segoe UI" font-weight="700">Columns</text>
+<text x="420" y="205" fill="#142433" font-size="38" font-family="Segoe UI" font-weight="700">128</text>
+<rect x="720" y="120" width="620" height="120" rx="22" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="750" y="165" fill="#b7791f" font-size="18" font-family="Segoe UI" font-weight="700">Core Use</text>
+<text x="750" y="198" fill="#142433" font-size="20" font-family="Segoe UI">Daily target + IV summaries + site metadata + CAMELS attributes</text>
+<rect x="80" y="300" width="1240" height="150" rx="18" fill="#f8fbfd" stroke="#c7d7e2"/>
 <rect x="98.0" y="401.3" width="89.3" height="10.7" rx="8" fill="#39d0ff"/>
-<text x="142.7" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">daily discharge</text>
-<text x="142.7" y="393.3" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">5</text>
+<text x="142.7" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">daily discharge</text>
+<text x="142.7" y="393.3" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">5</text>
 <rect x="201.3" y="401.3" width="89.3" height="10.7" rx="8" fill="#43f0c7"/>
-<text x="246.0" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">iv discharge</text>
-<text x="246.0" y="393.3" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">5</text>
+<text x="246.0" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">iv discharge</text>
+<text x="246.0" y="393.3" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">5</text>
 <rect x="304.7" y="401.3" width="89.3" height="10.7" rx="8" fill="#ffb562"/>
-<text x="349.3" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">gage height</text>
-<text x="349.3" y="393.3" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">5</text>
+<text x="349.3" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">gage height</text>
+<text x="349.3" y="393.3" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">5</text>
 <rect x="408.0" y="401.3" width="89.3" height="10.7" rx="8" fill="#ff7f87"/>
-<text x="452.7" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">stage discharge</text>
-<text x="452.7" y="393.3" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">5</text>
+<text x="452.7" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">stage discharge</text>
+<text x="452.7" y="393.3" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">5</text>
 <rect x="511.3" y="320.0" width="89.3" height="92.0" rx="8" fill="#39d0ff"/>
-<text x="556.0" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">site meta</text>
-<text x="556.0" y="312.0" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">43</text>
+<text x="556.0" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">site meta</text>
+<text x="556.0" y="312.0" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">43</text>
 <rect x="614.7" y="367.1" width="89.3" height="44.9" rx="8" fill="#43f0c7"/>
-<text x="659.3" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">ts metadata</text>
-<text x="659.3" y="359.1" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">21</text>
+<text x="659.3" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">ts metadata</text>
+<text x="659.3" y="359.1" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">21</text>
 <rect x="718.0" y="397.0" width="89.3" height="15.0" rx="8" fill="#ffb562"/>
-<text x="762.7" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">camels topo</text>
-<text x="762.7" y="389.0" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">7</text>
+<text x="762.7" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">camels topo</text>
+<text x="762.7" y="389.0" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">7</text>
 <rect x="821.3" y="386.3" width="89.3" height="25.7" rx="8" fill="#ff7f87"/>
-<text x="866.0" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">camels climate</text>
-<text x="866.0" y="378.3" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">12</text>
+<text x="866.0" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">camels climate</text>
+<text x="866.0" y="378.3" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">12</text>
 <rect x="924.7" y="382.0" width="89.3" height="30.0" rx="8" fill="#39d0ff"/>
-<text x="969.3" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">camels hydrology</text>
-<text x="969.3" y="374.0" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">14</text>
+<text x="969.3" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">camels hydrology</text>
+<text x="969.3" y="374.0" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">14</text>
 <rect x="1028.0" y="405.6" width="89.3" height="6.4" rx="8" fill="#43f0c7"/>
-<text x="1072.7" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">rating curve</text>
-<text x="1072.7" y="397.6" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">3</text>
+<text x="1072.7" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">rating curve</text>
+<text x="1072.7" y="397.6" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">3</text>
 <rect x="1131.3" y="403.4" width="89.3" height="8.6" rx="8" fill="#ffb562"/>
-<text x="1176.0" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">nasa imerg</text>
-<text x="1176.0" y="395.4" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">4</text>
+<text x="1176.0" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">nasa imerg</text>
+<text x="1176.0" y="395.4" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">4</text>
 <rect x="1234.7" y="407.7" width="89.3" height="4.3" rx="8" fill="#ff7f87"/>
-<text x="1279.3" y="432" text-anchor="middle" fill="#c9d9e2" font-size="10" font-family="Segoe UI">basin geometry</text>
-<text x="1279.3" y="399.7" text-anchor="middle" fill="#eef7fb" font-size="11" font-family="Segoe UI">2</text>
+<text x="1279.3" y="432" text-anchor="middle" fill="#4e6678" font-size="10" font-family="Segoe UI">basin geometry</text>
+<text x="1279.3" y="399.7" text-anchor="middle" fill="#142433" font-size="11" font-family="Segoe UI">2</text>
 </svg>

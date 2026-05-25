@@ -1,33 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="372" viewBox="0 0 1100 372">
-<defs>
-<linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#0b1822"/>
-<stop offset="100%" stop-color="#102636"/>
-</linearGradient>
-<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.22"/>
-</filter>
-</defs>
-<rect width="1100" height="372" rx="24" fill="url(#bg)"/>
-<text x="50" y="56" fill="#eef7fb" font-size="30" font-family="Segoe UI" font-weight="700">Factor 5: Site Metadata</text>
-<text x="50" y="88" fill="#9eb7c5" font-size="16" font-family="Segoe UI">Gauge identity and physical site summary.</text>
-<rect x="40" y="116" width="1020" height="226" rx="22" fill="#0f2130" stroke="#27495e"/>
-<text x="70" y="155" fill="#39d0ff" font-size="15" font-family="Segoe UI" font-weight="700">station nm</text>
-<text x="360" y="155" fill="#eef7fb" font-size="14" font-family="Segoe UI">Fish River near Fort Kent, Maine</text>
-<line x1="65" y1="173" x2="1035" y2="173" stroke="#244255"/>
-<text x="70" y="195" fill="#39d0ff" font-size="15" font-family="Segoe UI" font-weight="700">drain area va</text>
-<text x="360" y="195" fill="#eef7fb" font-size="14" font-family="Segoe UI">870</text>
-<line x1="65" y1="213" x2="1035" y2="213" stroke="#244255"/>
-<text x="70" y="235" fill="#39d0ff" font-size="15" font-family="Segoe UI" font-weight="700">alt va</text>
-<text x="360" y="235" fill="#eef7fb" font-size="14" font-family="Segoe UI">510.64</text>
-<line x1="65" y1="253" x2="1035" y2="253" stroke="#244255"/>
-<text x="70" y="275" fill="#39d0ff" font-size="15" font-family="Segoe UI" font-weight="700">dec lat va</text>
-<text x="360" y="275" fill="#eef7fb" font-size="14" font-family="Segoe UI">47.2375</text>
-<line x1="65" y1="293" x2="1035" y2="293" stroke="#244255"/>
-<text x="70" y="315" fill="#39d0ff" font-size="15" font-family="Segoe UI" font-weight="700">dec long va</text>
-<text x="360" y="315" fill="#eef7fb" font-size="14" font-family="Segoe UI">-68.58277778</text>
-<line x1="65" y1="333" x2="1035" y2="333" stroke="#244255"/>
-<text x="70" y="355" fill="#39d0ff" font-size="15" font-family="Segoe UI" font-weight="700">huc cd</text>
-<text x="360" y="355" fill="#eef7fb" font-size="14" font-family="Segoe UI">1010003</text>
-<line x1="65" y1="373" x2="1035" y2="373" stroke="#244255"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520">
+<defs></defs>
+<rect width="1100" height="520" rx="24" fill="#ffffff"/>
+<text x="50" y="56" fill="#142433" font-size="30" font-family="Segoe UI" font-weight="700">Factor 5: Site Metadata</text>
+<text x="50" y="88" fill="#4e6678" font-size="16" font-family="Segoe UI">Gauge profile shown as numeric site descriptors plus a location point.</text>
+<rect x="50" y="120" width="620" height="340" rx="20" fill="#ffffff" stroke="#c7d7e2"/>
+<rect x="720" y="120" width="320" height="340" rx="20" fill="#ffffff" stroke="#c7d7e2"/>
+<text x="80" y="170" fill="#4e6678" font-size="14" font-family="Segoe UI">Drain area</text>
+<rect x="220" y="158" width="380" height="16" rx="8" fill="#e8f0f5"/>
+<rect x="220" y="158" width="360.0" height="16" rx="8" fill="#2b6cb0"/>
+<text x="615" y="170" text-anchor="end" fill="#142433" font-size="13" font-family="Segoe UI">870.00</text>
+<text x="80" y="228" fill="#4e6678" font-size="14" font-family="Segoe UI">Altitude</text>
+<rect x="220" y="216" width="380" height="16" rx="8" fill="#e8f0f5"/>
+<rect x="220" y="216" width="211.3" height="16" rx="8" fill="#2b6cb0"/>
+<text x="615" y="228" text-anchor="end" fill="#142433" font-size="13" font-family="Segoe UI">510.64</text>
+<text x="80" y="286" fill="#4e6678" font-size="14" font-family="Segoe UI">Latitude</text>
+<rect x="220" y="274" width="380" height="16" rx="8" fill="#e8f0f5"/>
+<rect x="220" y="274" width="19.5" height="16" rx="8" fill="#2b6cb0"/>
+<text x="615" y="286" text-anchor="end" fill="#142433" font-size="13" font-family="Segoe UI">47.24</text>
+<text x="80" y="344" fill="#4e6678" font-size="14" font-family="Segoe UI">Longitude</text>
+<rect x="220" y="332" width="380" height="16" rx="8" fill="#e8f0f5"/>
+<rect x="220" y="332" width="28.4" height="16" rx="8" fill="#2b6cb0"/>
+<text x="615" y="344" text-anchor="end" fill="#142433" font-size="13" font-family="Segoe UI">68.58</text>
+<text x="880" y="156" text-anchor="middle" fill="#2f855a" font-size="18" font-family="Segoe UI" font-weight="700">Gauge Location</text>
+<rect x="760" y="190" width="240" height="180" rx="18" fill="#f8fbfd" stroke="#dbe6ee"/>
+<circle cx="880" cy="280" r="58" fill="#edf5fb" stroke="#2b6cb0" stroke-width="2"/>
+<circle cx="876.0" cy="283.5" r="7" fill="#dd6b20"/>
+<text x="880" y="396" text-anchor="middle" fill="#4e6678" font-size="13" font-family="Segoe UI">Fish River near Fort Kent, Maine</text>
 </svg>

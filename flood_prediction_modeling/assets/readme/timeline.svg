@@ -1,51 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="340" viewBox="0 0 1400 340">
-<defs>
-<linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#0b1822"/>
-<stop offset="100%" stop-color="#102636"/>
-</linearGradient>
-<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.22"/>
-</filter>
-</defs>
-<rect width="1400" height="340" rx="24" fill="url(#bg)"/>
-<text x="60" y="60" fill="#eef7fb" font-size="30" font-family="Segoe UI" font-weight="700">Project Timeline</text>
-<text x="60" y="92" fill="#9eb7c5" font-size="16" font-family="Segoe UI">Step-by-step progression from dataset sourcing to collaboration-ready assets.</text>
-<line x1="120.0" y1="180" x2="1280.0" y2="180" stroke="#39d0ff" stroke-width="5" stroke-linecap="round"/>
-<circle cx="120.0" cy="180" r="28" fill="#102b3d" stroke="#43f0c7" stroke-width="4" filter="url(#shadow)"/>
-<text x="120.0" y="188" text-anchor="middle" fill="#eef7fb" font-size="18" font-family="Segoe UI" font-weight="700">1</text>
-<rect x="35.0" y="218" width="170" height="86" rx="16" fill="#0f2130" stroke="#27495e"/>
-<text x="120.0" y="246" text-anchor="middle" fill="#43f0c7" font-size="16" font-family="Segoe UI" font-weight="700">Procurement</text>
-<text x="120.0" y="268" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">Identified credible USGS, CAMELS, and NA</text>
-<text x="120.0" y="284" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">SA sources.</text>
-<circle cx="352.0" cy="180" r="28" fill="#102b3d" stroke="#43f0c7" stroke-width="4" filter="url(#shadow)"/>
-<text x="352.0" y="188" text-anchor="middle" fill="#eef7fb" font-size="18" font-family="Segoe UI" font-weight="700">2</text>
-<rect x="267.0" y="218" width="170" height="86" rx="16" fill="#0f2130" stroke="#27495e"/>
-<text x="352.0" y="246" text-anchor="middle" fill="#43f0c7" font-size="16" font-family="Segoe UI" font-weight="700">Download</text>
-<text x="352.0" y="268" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">Loaded CAMELS attributes and USGS discha</text>
-<text x="352.0" y="284" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">rge records.</text>
-<circle cx="584.0" cy="180" r="28" fill="#102b3d" stroke="#43f0c7" stroke-width="4" filter="url(#shadow)"/>
-<text x="584.0" y="188" text-anchor="middle" fill="#eef7fb" font-size="18" font-family="Segoe UI" font-weight="700">3</text>
-<rect x="499.0" y="218" width="170" height="86" rx="16" fill="#0f2130" stroke="#27495e"/>
-<text x="584.0" y="246" text-anchor="middle" fill="#43f0c7" font-size="16" font-family="Segoe UI" font-weight="700">Database</text>
-<text x="584.0" y="268" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">Built a local SQLite hydrology dataset w</text>
-<text x="584.0" y="284" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">orkspace.</text>
-<circle cx="816.0" cy="180" r="28" fill="#102b3d" stroke="#43f0c7" stroke-width="4" filter="url(#shadow)"/>
-<text x="816.0" y="188" text-anchor="middle" fill="#eef7fb" font-size="18" font-family="Segoe UI" font-weight="700">4</text>
-<rect x="731.0" y="218" width="170" height="86" rx="16" fill="#0f2130" stroke="#27495e"/>
-<text x="816.0" y="246" text-anchor="middle" fill="#43f0c7" font-size="16" font-family="Segoe UI" font-weight="700">Model</text>
-<text x="816.0" y="268" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">Trained a next-day discharge baseline mo</text>
-<text x="816.0" y="284" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">del.</text>
-<circle cx="1048.0" cy="180" r="28" fill="#102b3d" stroke="#43f0c7" stroke-width="4" filter="url(#shadow)"/>
-<text x="1048.0" y="188" text-anchor="middle" fill="#eef7fb" font-size="18" font-family="Segoe UI" font-weight="700">5</text>
-<rect x="963.0" y="218" width="170" height="86" rx="16" fill="#0f2130" stroke="#27495e"/>
-<text x="1048.0" y="246" text-anchor="middle" fill="#43f0c7" font-size="16" font-family="Segoe UI" font-weight="700">Evaluation</text>
-<text x="1048.0" y="268" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">Generated metrics and multi-graph diagno</text>
-<text x="1048.0" y="284" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">stics.</text>
-<circle cx="1280.0" cy="180" r="28" fill="#102b3d" stroke="#43f0c7" stroke-width="4" filter="url(#shadow)"/>
-<text x="1280.0" y="188" text-anchor="middle" fill="#eef7fb" font-size="18" font-family="Segoe UI" font-weight="700">6</text>
-<rect x="1195.0" y="218" width="170" height="86" rx="16" fill="#0f2130" stroke="#27495e"/>
-<text x="1280.0" y="246" text-anchor="middle" fill="#43f0c7" font-size="16" font-family="Segoe UI" font-weight="700">Collab</text>
-<text x="1280.0" y="268" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">Prepared notebook, bundle, and master CS</text>
-<text x="1280.0" y="284" text-anchor="middle" fill="#bdd0db" font-size="12" font-family="Segoe UI">V for Gemini/Colab.</text>
+<defs></defs>
+<rect width="1400" height="340" rx="24" fill="#ffffff"/>
+<text x="60" y="60" fill="#142433" font-size="30" font-family="Segoe UI" font-weight="700">Project Timeline</text>
+<text x="60" y="92" fill="#4e6678" font-size="16" font-family="Segoe UI">Step-by-step progression from dataset sourcing to collaboration-ready assets.</text>
+<line x1="120.0" y1="180" x2="1280.0" y2="180" stroke="#2b6cb0" stroke-width="5" stroke-linecap="round"/>
+<circle cx="120.0" cy="180" r="28" fill="#ffffff" stroke="#2f855a" stroke-width="4"/>
+<text x="120.0" y="188" text-anchor="middle" fill="#142433" font-size="18" font-family="Segoe UI" font-weight="700">1</text>
+<rect x="35.0" y="218" width="170" height="86" rx="16" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="120.0" y="246" text-anchor="middle" fill="#2f855a" font-size="16" font-family="Segoe UI" font-weight="700">Procurement</text>
+<text x="120.0" y="268" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">Identified credible USGS, CAMELS, and NA</text>
+<text x="120.0" y="284" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">SA sources.</text>
+<circle cx="352.0" cy="180" r="28" fill="#ffffff" stroke="#2f855a" stroke-width="4"/>
+<text x="352.0" y="188" text-anchor="middle" fill="#142433" font-size="18" font-family="Segoe UI" font-weight="700">2</text>
+<rect x="267.0" y="218" width="170" height="86" rx="16" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="352.0" y="246" text-anchor="middle" fill="#2f855a" font-size="16" font-family="Segoe UI" font-weight="700">Download</text>
+<text x="352.0" y="268" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">Loaded CAMELS attributes and USGS discha</text>
+<text x="352.0" y="284" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">rge records.</text>
+<circle cx="584.0" cy="180" r="28" fill="#ffffff" stroke="#2f855a" stroke-width="4"/>
+<text x="584.0" y="188" text-anchor="middle" fill="#142433" font-size="18" font-family="Segoe UI" font-weight="700">3</text>
+<rect x="499.0" y="218" width="170" height="86" rx="16" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="584.0" y="246" text-anchor="middle" fill="#2f855a" font-size="16" font-family="Segoe UI" font-weight="700">Database</text>
+<text x="584.0" y="268" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">Built a local SQLite hydrology dataset w</text>
+<text x="584.0" y="284" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">orkspace.</text>
+<circle cx="816.0" cy="180" r="28" fill="#ffffff" stroke="#2f855a" stroke-width="4"/>
+<text x="816.0" y="188" text-anchor="middle" fill="#142433" font-size="18" font-family="Segoe UI" font-weight="700">4</text>
+<rect x="731.0" y="218" width="170" height="86" rx="16" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="816.0" y="246" text-anchor="middle" fill="#2f855a" font-size="16" font-family="Segoe UI" font-weight="700">Model</text>
+<text x="816.0" y="268" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">Trained a next-day discharge baseline mo</text>
+<text x="816.0" y="284" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">del.</text>
+<circle cx="1048.0" cy="180" r="28" fill="#ffffff" stroke="#2f855a" stroke-width="4"/>
+<text x="1048.0" y="188" text-anchor="middle" fill="#142433" font-size="18" font-family="Segoe UI" font-weight="700">5</text>
+<rect x="963.0" y="218" width="170" height="86" rx="16" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="1048.0" y="246" text-anchor="middle" fill="#2f855a" font-size="16" font-family="Segoe UI" font-weight="700">Evaluation</text>
+<text x="1048.0" y="268" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">Generated metrics and multi-graph diagno</text>
+<text x="1048.0" y="284" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">stics.</text>
+<circle cx="1280.0" cy="180" r="28" fill="#ffffff" stroke="#2f855a" stroke-width="4"/>
+<text x="1280.0" y="188" text-anchor="middle" fill="#142433" font-size="18" font-family="Segoe UI" font-weight="700">6</text>
+<rect x="1195.0" y="218" width="170" height="86" rx="16" fill="#f8fbfd" stroke="#c7d7e2"/>
+<text x="1280.0" y="246" text-anchor="middle" fill="#2f855a" font-size="16" font-family="Segoe UI" font-weight="700">Collab</text>
+<text x="1280.0" y="268" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">Prepared notebook, bundle, and master CS</text>
+<text x="1280.0" y="284" text-anchor="middle" fill="#4e6678" font-size="12" font-family="Segoe UI">V for Gemini/Colab.</text>
 </svg>
