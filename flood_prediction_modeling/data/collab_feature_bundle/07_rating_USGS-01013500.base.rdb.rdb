@@ -1,0 +1,38 @@
+# //UNITED STATES GEOLOGICAL SURVEY       http://water.usgs.gov/
+# //NATIONAL WATER INFORMATION SYSTEM     http://water.usgs.gov/data.html
+# //DATA ARE PROVISIONAL AND SUBJECT TO CHANGE UNTIL PUBLISHED BY USGS
+# //RETRIEVED: 2026-02-03 19:23:31
+# //WARNING
+# //WARNING The stage-discharge rating provided in this file should be
+# //WARNING considered provisional and subject to change. Stage-discharge
+# //WARNING ratings change over time as the channel features that control
+# //WARNING the relation between stage and discharge vary. Users are
+# //WARNING cautioned to consider carefully the applicability of this
+# //WARNING rating before using it for decisions that concern personal or
+# //WARNING public safety or operational consequences.
+# //FILE TYPE="NWIS RATING" 
+# //DATABASE NUMBER=01 DESCRIPTION=" Standard data base for this site."
+# //STATION AGENCY="USGS " NUMBER="01013500       " TIME_ZONE="EST" DST_FLAG=Y
+# //STATION NAME="Fish River near Fort Kent, Maine"
+# //LABEL="Discharge ft^3/s"
+# //PARAMETER CODE="00060"
+# //RATING ID="27.4." TYPE="STGQ" NAME="stage-discharge" AGING=Working
+# //RATING REMARKS="Rating extension for shift adjusted Q dropping below Rating 27.3"
+# //RATING EXPANSION="logarithmic"
+# //RATING OFFSET1=2.530000E+00
+# //RATING_INDEP ROUNDING="????" PARAMETER="Gage height (ft)"
+# //RATING_DEP ROUNDING="????" PARAMETER="Discharge (ft^3/s)"
+# //RATING_DATETIME BEGIN=20200401010000 BZONE=-05:00 END=-------------- EZONE=--- AGING=None
+# //RATING_DATETIME COMMENT="Rating extension for shift adjusted Q dropping below Rating 27.3"
+INDEP	DEP	STOR
+16N	16N	1S
+2.7200000E+00	2.4000000E+01	*
+2.8500000E+00	5.9650000E+01	*
+2.9800000E+00	1.0816000E+02	*
+3.0300000E+00	1.3000000E+02	*
+3.9500000E+00	8.0400000E+02	*
+4.0700000E+00	9.2500000E+02	*
+4.2500000E+00	1.1040000E+03	*
+9.6400000E+00	1.0520000E+04	*
+1.0310000E+01	1.2137840E+04	*
+1.2510000E+01	1.8027590E+04	*

@@ -1,0 +1,4 @@
+item_id,datetime,file_type,agency_code,monitoring_location_id,monitoring_location_number,asset_href,local_file
+USGS-01013500.exsa.rdb,2026-02-04T00:23:31Z,exsa,USGS,USGS-01013500,01013500,https://api.waterdata.usgs.gov/stac-files/ratings/USGS.01013500.exsa.rdb,07_rating_USGS-01013500.exsa.rdb.rdb
+USGS-01013500.corr.rdb,2026-02-04T00:23:31Z,corr,USGS,USGS-01013500,01013500,https://api.waterdata.usgs.gov/stac-files/ratings/USGS.01013500.corr.rdb,07_rating_USGS-01013500.corr.rdb.rdb
+USGS-01013500.base.rdb,2026-02-04T00:23:31Z,base,USGS,USGS-01013500,01013500,https://api.waterdata.usgs.gov/stac-files/ratings/USGS.01013500.base.rdb,07_rating_USGS-01013500.base.rdb.rdb

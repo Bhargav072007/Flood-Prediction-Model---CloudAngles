@@ -1,0 +1,13 @@
+layer_name,local_file,source,notes
+USGS daily discharge,01_usgs_daily_discharge.csv,USGS Water Data API,Daily discharge observations
+USGS instantaneous discharge,02_usgs_iv_discharge.csv,USGS IV service,Recent 15-minute discharge values
+USGS instantaneous gage height,03_usgs_iv_gage_height.csv,USGS IV service,Recent 15-minute water level / stage values
+Observed stage-discharge pairs,04_usgs_iv_stage_discharge_pairs.csv,Derived from USGS IV,Paired stage/discharge points for curve analysis
+USGS time-series metadata,05_usgs_time_series_metadata_discharge.csv,USGS Water Data API,Metadata for discharge time series
+USGS site metadata,06_usgs_site_metadata.csv,USGS site service,Station metadata including location and attributes
+USGS rating curve manifest,07_usgs_rating_curve_manifest.csv,USGS STAC ratings,Manifest for site-specific rating curve files
+USGS upstream basin geometry,08_usgs_upstream_basin.geojson,USGS NLDI,Watershed polygon for the gauge
+CAMELS topography attributes,09_camels_topography_attributes.csv,CAMELS-US,Static topographic basin features
+CAMELS climate attributes,10_camels_climate_attributes.csv,CAMELS-US,Static climatology basin features
+CAMELS hydrology attributes,11_camels_hydrology_attributes.csv,CAMELS-US,Hydrologic signatures and basin metrics
+NASA IMERG granule metadata,12_nasa_imerg_granule_metadata.csv,NASA CMR / GES DISC,Public metadata for precipitation granules
