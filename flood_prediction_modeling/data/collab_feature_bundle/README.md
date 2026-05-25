@@ -6,6 +6,12 @@ Primary manifest:
 
 - `00_feature_bundle_manifest.csv`
 
+Best single file:
+
+- `master_flood_feature_table.csv`
+
+If you want one clean upload for Gemini or Colab, use `master_flood_feature_table.csv`.
+
 Core loaded layers:
 
 1. `01_usgs_daily_discharge.csv`
@@ -26,3 +32,4 @@ Notes:
 - The rating-curve manifest points to downloaded `.rdb` rating files in this same folder.
 - The gauge used for this bundle is USGS site `01013500`.
 - Gage height is included as the closest immediately accessible official river-depth-like signal for this site.
+- The master table repeats static basin/site attributes across daily rows so a single CSV can be used directly in notebooks or LLM workflows.

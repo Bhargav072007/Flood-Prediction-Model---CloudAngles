@@ -1,113 +1,189 @@
 # Flood Prediction Model - CloudAngles
 
-This repository contains a working local flood-model baseline, the supporting dataset procurement notes, and a team dashboard for reviewing the results.
+This repository contains a working flood-prediction baseline workflow, a collaboration notebook, a review dashboard, and a cleaned data bundle that can be loaded directly into Google Colab or Gemini.
 
-## What is included
+## Start Here
 
-- `flood_prediction_modeling/`
-  - dataset downloader
-  - SQLite database builder
-  - baseline predictive model
-  - team dashboard with animated evaluation charts
-  - saved outputs and plots
-- `flood_prediction_procurement/`
-  - dataset shortlist
-  - PostGIS schema
-  - ER diagram
+If you only need the essentials, follow this order:
 
-## Did we build a model?
+1. Read this README for the project overview.
+2. Open the collaboration notebook:
+   [`Flood_Prediction_Collab_Notebook.ipynb`](./Flood_Prediction_Collab_Notebook.ipynb)
+3. Open the team dashboard:
+   [`flood_prediction_modeling/index.html`](./flood_prediction_modeling/index.html)
+4. Load the single master CSV:
+   [`master_flood_feature_table.csv`](./flood_prediction_modeling/data/collab_feature_bundle/master_flood_feature_table.csv)
+5. Review the model outputs:
+   [`metrics.json`](./flood_prediction_modeling/outputs/metrics.json)
+   [`predictions.csv`](./flood_prediction_modeling/outputs/predictions.csv)
 
-Yes.
+## What Has Been Built
 
-The current implementation includes a working **baseline machine learning / statistical prediction model** for **next-day river discharge forecasting** at USGS site `01013500`.
+Yes, a real model was built.
+
+The current implementation is a working **baseline machine learning / statistical forecasting model** for **next-day river discharge prediction** at USGS site `01013500`.
 
 It uses:
-
 - lagged discharge values
 - rolling discharge means
 - seasonal encoding
-- CAMELS static basin attributes
+- CAMELS basin attributes
 
-The model is implemented in:
-
+Main training script:
 - [`flood_prediction_modeling/train_model.py`](./flood_prediction_modeling/train_model.py)
 
-This is a real predictive model, not just a mockup. It is a baseline regression-style forecasting model trained locally from downloaded data.
+This is a real predictive workflow, not just a dashboard or dataset dump.
 
-## Current model metrics
+## Current Model Metrics
 
-From the latest local run:
+From the latest saved run:
 
 - `RMSE = 241.44`
 - `MAE = 116.61`
 - `NSE = 0.9758`
+- `Train Rows = 7293`
+- `Test Rows = 1824`
 
-Metrics file:
-
+Metric file:
 - [`flood_prediction_modeling/outputs/metrics.json`](./flood_prediction_modeling/outputs/metrics.json)
 
-## How to access the dashboard
+## Main Graphs and Visual Review
 
-### Option 1: Open directly
+### Static output already saved
 
-Open:
+Prediction plot:
 
+![Prediction Plot](./flood_prediction_modeling/outputs/prediction_plot.svg)
+
+### Visualizations available in the dashboard and notebook
+
+The project includes these evaluation views:
+
+1. Actual vs predicted discharge over time
+2. Residuals over time
+3. Trend sparkline
+4. Actual vs predicted scatter plot
+5. Error distribution histogram
+6. Rolling 14-day MAE
+7. Monthly average actual vs predicted
+8. Basin attribute summaries
+9. Stage vs discharge relationship
+10. Data inventory / feature summaries
+
+Best places to see them:
 - [`flood_prediction_modeling/index.html`](./flood_prediction_modeling/index.html)
+- [`Flood_Prediction_Collab_Notebook.ipynb`](./Flood_Prediction_Collab_Notebook.ipynb)
 
-This is the team dashboard page with:
+## Step-by-Step Usage
 
-- animated forecast tracking
-- residual chart
-- trend chart
-- actual vs predicted scatter plot
-- error distribution
-- rolling 14-day MAE
+### Option A: Fastest review path
 
-### Option 2: Serve locally
+1. Open the dashboard:
+   [`flood_prediction_modeling/index.html`](./flood_prediction_modeling/index.html)
+2. Read the metrics from:
+   [`flood_prediction_modeling/outputs/metrics.json`](./flood_prediction_modeling/outputs/metrics.json)
+3. Open the collaboration notebook:
+   [`Flood_Prediction_Collab_Notebook.ipynb`](./Flood_Prediction_Collab_Notebook.ipynb)
+4. Load the single merged CSV:
+   [`master_flood_feature_table.csv`](./flood_prediction_modeling/data/collab_feature_bundle/master_flood_feature_table.csv)
 
-From the repository root, run:
+### Option B: Run locally
+
+1. From the repository root, run:
 
 ```powershell
 .\run_dashboard.ps1
 ```
 
-Then open:
+2. Open:
 
-- `http://127.0.0.1:8123/flood_prediction_modeling/index.html`
+```text
+http://127.0.0.1:8123/flood_prediction_modeling/index.html
+```
 
-## How to re-run the model
+### Option C: Re-run the data and model pipeline
 
-Use the bundled Python runtime from this environment or your own Python install with `pandas` and `numpy`.
-
-From `flood_prediction_modeling/`:
+1. Move into `flood_prediction_modeling/`
+2. Run:
 
 ```powershell
 & "C:\Users\msrib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" download_data.py
 & "C:\Users\msrib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" build_database.py
 & "C:\Users\msrib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" train_model.py
+& "C:\Users\msrib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" create_collab_feature_bundle.py
+& "C:\Users\msrib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" build_master_feature_csv.py
 ```
 
-## Dataset status
+## Clean Repository Map
+
+### Top level
+
+- [`README.md`](./README.md): main guide
+- [`index.html`](./index.html): landing page / redirect for hosted demo
+- [`Flood_Prediction_Collab_Notebook.ipynb`](./Flood_Prediction_Collab_Notebook.ipynb): Colab-ready collaboration notebook
+- [`run_dashboard.ps1`](./run_dashboard.ps1): local dashboard launcher
+
+### Modeling workspace
+
+- [`flood_prediction_modeling/README.md`](./flood_prediction_modeling/README.md): technical modeling notes
+- [`flood_prediction_modeling/download_data.py`](./flood_prediction_modeling/download_data.py)
+- [`flood_prediction_modeling/build_database.py`](./flood_prediction_modeling/build_database.py)
+- [`flood_prediction_modeling/train_model.py`](./flood_prediction_modeling/train_model.py)
+- [`flood_prediction_modeling/create_collab_feature_bundle.py`](./flood_prediction_modeling/create_collab_feature_bundle.py)
+- [`flood_prediction_modeling/build_master_feature_csv.py`](./flood_prediction_modeling/build_master_feature_csv.py)
+
+### Clean data bundle
+
+Folder:
+- [`flood_prediction_modeling/data/collab_feature_bundle/`](./flood_prediction_modeling/data/collab_feature_bundle/)
+
+Important files:
+- [`00_feature_bundle_manifest.csv`](./flood_prediction_modeling/data/collab_feature_bundle/00_feature_bundle_manifest.csv)
+- [`master_flood_feature_table.csv`](./flood_prediction_modeling/data/collab_feature_bundle/master_flood_feature_table.csv)
+- [`README.md`](./flood_prediction_modeling/data/collab_feature_bundle/README.md)
+
+### Procurement and schema notes
+
+- [`flood_prediction_procurement/README.md`](./flood_prediction_procurement/README.md)
+- [`flood_prediction_procurement/schema.sql`](./flood_prediction_procurement/schema.sql)
+- [`flood_prediction_procurement/erd.mmd`](./flood_prediction_procurement/erd.mmd)
+
+## Single CSV for Gemini / Colab
+
+For the cleanest workflow, use this single file:
+
+- [`master_flood_feature_table.csv`](./flood_prediction_modeling/data/collab_feature_bundle/master_flood_feature_table.csv)
+
+It contains:
+- `9132` rows
+- `128` columns
+- daily discharge
+- instantaneous discharge summaries
+- gage height summaries
+- stage-discharge paired summaries
+- station metadata
+- basin attributes
+- rating curve metadata
+- NASA IMERG metadata summary
+- basin geometry reference
+
+## Dataset Status
 
 ### Fully integrated
 
 - CAMELS-US attributes
 - USGS Water Data API daily discharge
+- USGS instantaneous discharge
+- USGS gage height
+- USGS rating curve metadata and files
+- USGS upstream basin geometry
 
 ### Partially integrated
 
 - NASA GPM IMERG Early V07
 
-NASA metadata access works, but direct IMERG file download returned `401 Unauthorized` in this environment, so Earthdata credentials are still needed for full precipitation ingestion.
+The project includes real IMERG granule metadata, but not authenticated precipitation raster ingestion. Direct binary file download from GES DISC still requires Earthdata authentication.
 
-## Repository map
+## Best Next Upgrade
 
-- [`flood_prediction_modeling/index.html`](./flood_prediction_modeling/index.html)
-- [`flood_prediction_modeling/README.md`](./flood_prediction_modeling/README.md)
-- [`flood_prediction_modeling/outputs/predictions.csv`](./flood_prediction_modeling/outputs/predictions.csv)
-- [`flood_prediction_modeling/outputs/prediction_plot.svg`](./flood_prediction_modeling/outputs/prediction_plot.svg)
-- [`flood_prediction_procurement/README.md`](./flood_prediction_procurement/README.md)
-
-## Next recommended upgrade
-
-The next major step is to add authenticated NASA IMERG precipitation ingestion so the system can evolve from a discharge-memory baseline into a stronger rainfall-driven flood prediction workflow.
+The most important next step is to add authenticated precipitation ingestion and align rainfall to basin-local time so the model can evolve from a discharge-memory baseline into a stronger rainfall-driven flood prediction workflow.

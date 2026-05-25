@@ -1,45 +1,55 @@
 # Flood Prediction Modeling Workspace
 
-This workspace downloads a practical subset of flood-relevant data, stores it locally, and trains a baseline one-day-ahead discharge prediction model.
+This folder contains the executable modeling pipeline, the dashboard, the generated outputs, and the cleaned collaboration data bundle.
 
-## What this pipeline uses
+## Recommended order inside this folder
 
-- **CAMELS-US** static basin attributes from the official Zenodo-hosted CAMELS release
-- **USGS Water Data API** daily discharge data from the modern `api.waterdata.usgs.gov` endpoint
-- **NASA GPM IMERG Early V07** public granule metadata from NASA CMR
+1. Read the outputs:
+   - [`outputs/metrics.json`](./outputs/metrics.json)
+   - [`outputs/predictions.csv`](./outputs/predictions.csv)
+2. Open the dashboard:
+   - [`index.html`](./index.html)
+3. Use the collaboration data bundle:
+   - [`data/collab_feature_bundle/`](./data/collab_feature_bundle/)
+4. Re-run the pipeline only if needed.
 
-## Important NASA note
+## Core scripts
 
-This pipeline can download **public IMERG metadata** and verify the official granule download URL. In this environment, direct IMERG file download from GES DISC returns `401 Unauthorized`, which is consistent with NASA Earthdata-protected access.
+- [`download_data.py`](./download_data.py): downloads CAMELS, USGS, and NASA metadata
+- [`build_database.py`](./build_database.py): builds the local SQLite database
+- [`train_model.py`](./train_model.py): trains the baseline next-day discharge model
+- [`create_collab_feature_bundle.py`](./create_collab_feature_bundle.py): generates the cleaned loaded feature files
+- [`build_master_feature_csv.py`](./build_master_feature_csv.py): merges the factors into a single daily CSV
 
-That means:
+## Model summary
 
-- metadata download works
-- official file URL discovery works
-- anonymous binary granule download does **not** work here
-
-## Files
-
-- [download_data.py](/C:/Users/msrib/OneDrive/Documents%20-%20OneDrive/Playground/flood_prediction_modeling/download_data.py)
-- [build_database.py](/C:/Users/msrib/OneDrive/Documents%20-%20OneDrive/Playground/flood_prediction_modeling/build_database.py)
-- [train_model.py](/C:/Users/msrib/OneDrive/Documents%20-%20OneDrive/Playground/flood_prediction_modeling/train_model.py)
-- [model_flow.mmd](/C:/Users/msrib/OneDrive/Documents%20-%20OneDrive/Playground/flood_prediction_modeling/model_flow.mmd)
-
-## Run order
-
-```powershell
-& "C:\Users\msrib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" download_data.py
-& "C:\Users\msrib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" build_database.py
-& "C:\Users\msrib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" train_model.py
-```
-
-## Model choice
-
-The baseline model is a **linear autoregressive discharge forecast** using:
+The current model is a **baseline linear autoregressive discharge forecast** using:
 
 - lagged discharge features
 - rolling discharge means
-- calendar seasonality
-- selected CAMELS static catchment attributes
+- seasonal terms
+- CAMELS static catchment attributes
 
-This is a baseline, not a production flood warning model. It is intended to give you a working starting point quickly.
+This is a working baseline, not yet a final rainfall-driven flood forecasting system.
+
+## Data products in this folder
+
+### Raw and database artifacts
+
+- `data/raw/`
+- `data/flood_model.db`
+
+### Collaboration-ready data
+
+- `data/collab_feature_bundle/00_feature_bundle_manifest.csv`
+- `data/collab_feature_bundle/master_flood_feature_table.csv`
+
+### Visual and model outputs
+
+- `outputs/metrics.json`
+- `outputs/predictions.csv`
+- `outputs/prediction_plot.svg`
+
+## Important note about NASA IMERG
+
+This project includes **real IMERG granule metadata**, but direct authenticated precipitation file ingestion is still the main missing piece. In this environment, anonymous binary access returned `401 Unauthorized`, which is consistent with Earthdata-protected access.
